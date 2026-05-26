@@ -7,25 +7,18 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"strings"
-
-	"github.com/sigstore/cosign/v2/pkg/oci/remote"
 
 	"github.com/BurntSushi/toml"
 	"github.com/buildpacks/lifecycle/platform/files"
 	"github.com/google/go-containerregistry/pkg/authn"
 	"github.com/google/go-containerregistry/pkg/authn/k8schain"
 	"github.com/pkg/errors"
-	"github.com/sigstore/cosign/v2/cmd/cosign/cli/options"
-	"github.com/sigstore/cosign/v2/cmd/cosign/cli/sign"
 
 	_ "github.com/pivotal/kpack/internal/logrus/fatal"
 	buildapi "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
 	"github.com/pivotal/kpack/pkg/cnb"
-	"github.com/pivotal/kpack/pkg/cosign"
 	"github.com/pivotal/kpack/pkg/dockercreds"
 	"github.com/pivotal/kpack/pkg/flaghelpers"
-	"github.com/pivotal/kpack/pkg/notary"
 	"github.com/pivotal/kpack/pkg/registry"
 )
 
@@ -157,68 +150,13 @@ func main() {
 }
 
 func signImage(report files.Report, keychain authn.Keychain) error {
-	if hasCosign() {
-		cosignSigner := cosign.NewImageSigner(sign.SignCmd, remote.SignatureTag)
-
-		annotations, err := mapKeyValueArgs(cosignAnnotations)
-		if err != nil {
-			return err
-		}
-
-		repositories, err := mapKeyValueArgs(cosignRepositories)
-		if err != nil {
-			return err
-		}
-
-		mediaTypes, err := mapKeyValueArgs(cosignDockerMediaTypes)
-		if err != nil {
-			return err
-		}
-
-		if err := cosignSigner.Sign(
-			&options.RootOptions{Timeout: options.DefaultTimeout},
-			report,
-			cosignSecretLocation,
-			annotations,
-			repositories,
-			mediaTypes); err != nil {
-			return errors.Wrap(err, "cosign sign")
-		}
-	}
-
-	if notaryV1URL != "" {
-		signer := notary.ImageSigner{
-			Logger:  logger,
-			Client:  &registry.Client{},
-			Factory: &notary.RemoteRepositoryFactory{},
-		}
-		if err := signer.Sign(notaryV1URL, notarySecretDir, report, keychain); err != nil {
-			return err
-		}
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
 func mapKeyValueArgs(args flaghelpers.CredentialsFlags) (map[string]interface{}, error) {
-	overrides := make(map[string]interface{})
-
-	for _, arg := range args {
-		splitArg := strings.Split(arg, "=")
-
-		if len(splitArg) != 2 {
-			return nil, errors.Errorf("argument not formatted as -arg=key=value: %s", arg)
-		}
-
-		key := splitArg[0]
-		value := splitArg[1]
-
-		overrides[key] = value
-	}
-
-	return overrides, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func hasCosign() bool {
-	_, err := os.Stat(cosignSecretLocation)
-	return !os.IsNotExist(err)
-}
+func hasCosign() bool { _ = "STUB: not implemented"; return false }

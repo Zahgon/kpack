@@ -43,12 +43,14 @@ type builderLister struct {
 
 // NewBuilderLister returns a new BuilderLister.
 func NewBuilderLister(indexer cache.Indexer) BuilderLister {
-	return &builderLister{listers.New[*buildv1alpha2.Builder](indexer, buildv1alpha2.Resource("builder"))}
+	_ = "STUB: not implemented"
+	return *new(BuilderLister)
 }
 
 // Builders returns an object that can list and get Builders.
 func (s *builderLister) Builders(namespace string) BuilderNamespaceLister {
-	return builderNamespaceLister{listers.NewNamespaced[*buildv1alpha2.Builder](s.ResourceIndexer, namespace)}
+	_ = "STUB: not implemented"
+	return *new(BuilderNamespaceLister)
 }
 
 // BuilderNamespaceLister helps list and get Builders.

@@ -5,10 +5,8 @@ import (
 )
 
 func NewLifecycleChange(oldLifecycle, newLifecycle string) Change {
-	return lifecycleChange{
-		oldLifecycle: oldLifecycle,
-		newLifecycle: newLifecycle,
-	}
+	_ = "STUB: not implemented"
+	return *new(Change)
 }
 
 type lifecycleChange struct {
@@ -17,14 +15,21 @@ type lifecycleChange struct {
 	err          error
 }
 
-func (l lifecycleChange) Reason() buildapi.BuildReason { return buildapi.BuildReasonLifecycle }
-
-func (l lifecycleChange) IsBuildRequired() (bool, error) {
-	return l.oldLifecycle != l.newLifecycle, l.err
+func (l lifecycleChange) Reason() buildapi.BuildReason {
+	_ = "STUB: not implemented"
+	return *new(buildapi.BuildReason)
 }
 
-func (l lifecycleChange) Old() interface{} { return l.oldLifecycle }
+func (l lifecycleChange) IsBuildRequired() (bool, error) {
+	_ = "STUB: not implemented"
+	return false, nil
+}
 
-func (l lifecycleChange) New() interface{} { return l.newLifecycle }
+func (l lifecycleChange) Old() interface{} { _ = "STUB: not implemented"; return nil }
 
-func (l lifecycleChange) Priority() buildapi.BuildPriority { return buildapi.BuildPriorityLow }
+func (l lifecycleChange) New() interface{} { _ = "STUB: not implemented"; return nil }
+
+func (l lifecycleChange) Priority() buildapi.BuildPriority {
+	_ = "STUB: not implemented"
+	return *new(buildapi.BuildPriority)
+}

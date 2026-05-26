@@ -1,133 +1,35 @@
 package cnb
 
 import (
-	"fmt"
 	"log"
-	"os"
-	"path/filepath"
-
-	"github.com/BurntSushi/toml"
-	ignore "github.com/sabhiram/go-gitignore"
 )
 
 const defaultProjectDescriptorPath = "project.toml"
 
 func ProcessProjectDescriptor(appDir, descriptorPath, platformDir string, logger *log.Logger) error {
-	file := filepath.Join(appDir, defaultProjectDescriptorPath)
-	if descriptorPath != "" {
-		file = filepath.Join(appDir, descriptorPath)
-	}
-
-	if _, err := os.Stat(file); os.IsNotExist(err) {
-		if descriptorPath != "" {
-			return fmt.Errorf("project descriptor path set but no file found: %s", descriptorPath)
-		}
-		return nil
-	} else if err != nil {
-		return fmt.Errorf("unable to determine if project descriptor file exists: %w", err)
-	}
-
-	d, err := parseProjectDescriptor(file, logger)
-	if err != nil {
-		return err
-	}
-	if d.IO.Buildpacks.Group != nil {
-		logger.Println("info: buildpacks provided in project descriptor file will be ignored")
-	}
-
-	if d.IO.Buildpacks.Builder != "" {
-		logger.Println("info: builder provided in project descriptor file will be ignored")
-	}
-	if err := processFiles(appDir, d.IO.Buildpacks.build); err != nil {
-		return err
-	}
-	return serializeEnvVars(d.env(), platformDir)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func parseProjectDescriptor(file string, logger *log.Logger) (descriptorV2, error) {
-	var d descriptorV2
-	if _, err := toml.DecodeFile(file, &d); err != nil {
-		return descriptorV2{}, err
-	}
-
-	switch sv := d.Project.SchemaVersion; sv {
-	case "0.2":
-		return d, nil
-	case "": // v1 descriptor
-		var dV1 descriptorV1
-		if _, err := toml.DecodeFile(file, &dV1); err != nil {
-			return descriptorV2{}, err
-		}
-		return v1ToV2(dV1), nil
-	default:
-		logger.Println(fmt.Sprintf("warning: project descriptor version %s is unsupported and %s will be ignored", sv, file))
-		return descriptorV2{}, nil
-	}
+	_ = "STUB: not implemented"
+	return *new(descriptorV2), nil
 }
 
-func v1ToV2(v1 descriptorV1) descriptorV2 {
-	return descriptorV2{
-		IO: ioTable{
-			Buildpacks: cnbTableV2{
-				build: v1.Build.build,
-				Group: v1.Build.Buildpacks,
-				buildEnvVariableV2: buildEnvVariableV2{
-					BuildEnv: buildEnvVariable{
-						Env: v1.Build.Env,
-					},
-				},
-			},
-		},
-	}
-}
+// v1 descriptor
 
-func processFiles(appDir string, d build) error {
-	fileFilter, err := getFileFilter(d)
-	if err != nil {
-		return err
-	}
-	if fileFilter == nil {
-		return nil
-	}
-	return filepath.Walk(appDir, func(path string, f os.FileInfo, fileError error) error {
-		if fileError != nil {
-			return fileError
-		}
-		relPath, err := filepath.Rel(appDir, path)
-		if err != nil {
-			return err
-		}
-		// We only want to remove paths that don't match the patterns and are
-		// files otherwise we will end up removing too much.
-		// For eg if the include = ["*jar"]
-		// All the directories will not match the pattern and hence be removed.
-		// On the other hand if a directory is excluded/included,
-		// for eg include = "my-dir" files under "my-dir" will match the pattern and not be removed.
-		if !fileFilter(relPath) && !f.IsDir() {
-			return os.Remove(path)
-		}
-		return nil
-	})
-}
+func v1ToV2(v1 descriptorV1) descriptorV2 { _ = "STUB: not implemented"; return *new(descriptorV2) }
 
-func getFileFilter(d build) (func(string) bool, error) {
-	if d.Exclude != nil && d.Include != nil {
-		return nil, fmt.Errorf("project descriptor cannot have both include and exclude defined")
-	}
+func processFiles(appDir string, d build) error { _ = "STUB: not implemented"; return nil }
 
-	if len(d.Exclude) > 0 {
-		excludes := ignore.CompileIgnoreLines(d.Exclude...)
-		return func(fileName string) bool {
-			return !excludes.MatchesPath(fileName)
-		}, nil
-	}
-	if len(d.Include) > 0 {
-		includes := ignore.CompileIgnoreLines(d.Include...)
-		return includes.MatchesPath, nil
-	}
+// We only want to remove paths that don't match the patterns and are
+// files otherwise we will end up removing too much.
+// For eg if the include = ["*jar"]
+// All the directories will not match the pattern and hence be removed.
+// On the other hand if a directory is excluded/included,
+// for eg include = "my-dir" files under "my-dir" will match the pattern and not be removed.
 
-	return nil, nil
-}
+func getFileFilter(d build) (func(string) bool, error) { _ = "STUB: not implemented"; return nil, nil }
 
 type descriptorV2 struct {
 	Project project `toml:"_"`
@@ -137,13 +39,7 @@ type descriptorV2 struct {
 // Because CNB Project Descriptor v0.2 has two ways for defining environment variables.
 // see https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md#iobuildpacksbuildenv-optional
 // This function calculates the final environment variables
-func (d *descriptorV2) env() []envVariable {
-	env := d.IO.Buildpacks.BuildEnv.Env
-	if env == nil {
-		env = d.IO.Buildpacks.EnvBuild.Env
-	}
-	return env
-}
+func (d *descriptorV2) env() []envVariable { _ = "STUB: not implemented"; return nil }
 
 type project struct {
 	SchemaVersion string `toml:"schema-version"`

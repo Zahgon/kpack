@@ -8,19 +8,7 @@ import (
 
 type ByCreationTimestamp []*buildapi.Build
 
-func (o ByCreationTimestamp) Len() int      { return len(o) }
-func (o ByCreationTimestamp) Swap(i, j int) { o[i], o[j] = o[j], o[i] }
+func (o ByCreationTimestamp) Len() int      { _ = "STUB: not implemented"; return 0 }
+func (o ByCreationTimestamp) Swap(i, j int) { _ = "STUB: not implemented"; return }
 
-func (o ByCreationTimestamp) Less(i, j int) bool {
-	if o[i].ObjectMeta.CreationTimestamp.IsZero() && !o[j].ObjectMeta.CreationTimestamp.IsZero() {
-		return false
-	}
-	if !o[i].ObjectMeta.CreationTimestamp.IsZero() && o[j].ObjectMeta.CreationTimestamp.IsZero() {
-		return true
-	}
-
-	if o[i].ObjectMeta.CreationTimestamp.Equal(&o[j].ObjectMeta.CreationTimestamp) {
-		return true
-	}
-	return o[i].ObjectMeta.CreationTimestamp.Before(&o[j].ObjectMeta.CreationTimestamp)
-}
+func (o ByCreationTimestamp) Less(i, j int) bool { _ = "STUB: not implemented"; return false }

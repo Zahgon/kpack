@@ -54,55 +54,60 @@ type version struct {
 
 // New returns a new Interface.
 func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) Interface {
-	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(Interface)
 }
 
 // Builds returns a BuildInformer.
-func (v *version) Builds() BuildInformer {
-	return &buildInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
-}
+func (v *version) Builds() BuildInformer { _ = "STUB: not implemented"; return *new(BuildInformer) }
 
 // Builders returns a BuilderInformer.
 func (v *version) Builders() BuilderInformer {
-	return &builderInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(BuilderInformer)
 }
 
 // Buildpacks returns a BuildpackInformer.
 func (v *version) Buildpacks() BuildpackInformer {
-	return &buildpackInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(BuildpackInformer)
 }
 
 // ClusterBuilders returns a ClusterBuilderInformer.
 func (v *version) ClusterBuilders() ClusterBuilderInformer {
-	return &clusterBuilderInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(ClusterBuilderInformer)
 }
 
 // ClusterBuildpacks returns a ClusterBuildpackInformer.
 func (v *version) ClusterBuildpacks() ClusterBuildpackInformer {
-	return &clusterBuildpackInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(ClusterBuildpackInformer)
 }
 
 // ClusterLifecycles returns a ClusterLifecycleInformer.
 func (v *version) ClusterLifecycles() ClusterLifecycleInformer {
-	return &clusterLifecycleInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(ClusterLifecycleInformer)
 }
 
 // ClusterStacks returns a ClusterStackInformer.
 func (v *version) ClusterStacks() ClusterStackInformer {
-	return &clusterStackInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(ClusterStackInformer)
 }
 
 // ClusterStores returns a ClusterStoreInformer.
 func (v *version) ClusterStores() ClusterStoreInformer {
-	return &clusterStoreInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(ClusterStoreInformer)
 }
 
 // Images returns a ImageInformer.
-func (v *version) Images() ImageInformer {
-	return &imageInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
-}
+func (v *version) Images() ImageInformer { _ = "STUB: not implemented"; return *new(ImageInformer) }
 
 // SourceResolvers returns a SourceResolverInformer.
 func (v *version) SourceResolvers() SourceResolverInformer {
-	return &sourceResolverInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(SourceResolverInformer)
 }

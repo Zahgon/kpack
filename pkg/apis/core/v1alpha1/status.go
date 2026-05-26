@@ -14,29 +14,7 @@ limitations under the License.
 
 package v1alpha1
 
-import (
-	corev1 "k8s.io/api/core/v1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-)
-
 func CreateStatusWithReadyCondition(generation int64, err error) Status {
-	msg := ""
-	conditionStatus := corev1.ConditionTrue
-
-	if err != nil {
-		msg = err.Error()
-		conditionStatus = corev1.ConditionFalse
-	}
-
-	return Status{
-		ObservedGeneration: generation,
-		Conditions: Conditions{
-			{
-				Type:               ConditionReady,
-				Status:             conditionStatus,
-				LastTransitionTime: VolatileTime{Inner: metav1.Now()},
-				Message:            msg,
-			},
-		},
-	}
+	_ = "STUB: not implemented"
+	return *new(Status)
 }

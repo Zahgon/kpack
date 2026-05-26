@@ -30,10 +30,6 @@ type Images struct {
 // doesn't work right now because lifecycle_provider.go imports pkg/cnb which imports pkg/apis/build/v1alpha2 and
 // thus creating an import cycle.
 func (i *Images) ToBuildPodImages() v1alpha2.BuildPodImages {
-	return v1alpha2.BuildPodImages{
-		BuildInitImage:   i.BuildInitImage,
-		BuildWaiterImage: i.BuildWaiterImage,
-		CompletionImage:  i.CompletionImage,
-		RebaseImage:      i.RebaseImage,
-	}
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.BuildPodImages)
 }

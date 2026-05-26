@@ -47,5 +47,6 @@ type SourceResolverList struct {
 }
 
 func (*SourceResolver) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind("SourceResolver")
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }

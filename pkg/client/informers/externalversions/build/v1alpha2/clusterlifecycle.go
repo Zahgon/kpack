@@ -19,16 +19,11 @@
 package v1alpha2
 
 import (
-	context "context"
 	time "time"
 
-	apisbuildv1alpha2 "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
 	versioned "github.com/pivotal/kpack/pkg/client/clientset/versioned"
 	internalinterfaces "github.com/pivotal/kpack/pkg/client/informers/externalversions/internalinterfaces"
 	buildv1alpha2 "github.com/pivotal/kpack/pkg/client/listers/build/v1alpha2"
-	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	runtime "k8s.io/apimachinery/pkg/runtime"
-	watch "k8s.io/apimachinery/pkg/watch"
 	cache "k8s.io/client-go/tools/cache"
 )
 
@@ -48,54 +43,29 @@ type clusterLifecycleInformer struct {
 // Always prefer using an informer factory to get a shared informer instead of getting an independent
 // one. This reduces memory footprint and number of connections to the server.
 func NewClusterLifecycleInformer(client versioned.Interface, resyncPeriod time.Duration, indexers cache.Indexers) cache.SharedIndexInformer {
-	return NewFilteredClusterLifecycleInformer(client, resyncPeriod, indexers, nil)
+	_ = "STUB: not implemented"
+	return *new(cache.SharedIndexInformer)
 }
 
 // NewFilteredClusterLifecycleInformer constructs a new informer for ClusterLifecycle type.
 // Always prefer using an informer factory to get a shared informer instead of getting an independent
 // one. This reduces memory footprint and number of connections to the server.
 func NewFilteredClusterLifecycleInformer(client versioned.Interface, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
-	return cache.NewSharedIndexInformer(
-		&cache.ListWatch{
-			ListFunc: func(options v1.ListOptions) (runtime.Object, error) {
-				if tweakListOptions != nil {
-					tweakListOptions(&options)
-				}
-				return client.KpackV1alpha2().ClusterLifecycles().List(context.Background(), options)
-			},
-			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
-				if tweakListOptions != nil {
-					tweakListOptions(&options)
-				}
-				return client.KpackV1alpha2().ClusterLifecycles().Watch(context.Background(), options)
-			},
-			ListWithContextFunc: func(ctx context.Context, options v1.ListOptions) (runtime.Object, error) {
-				if tweakListOptions != nil {
-					tweakListOptions(&options)
-				}
-				return client.KpackV1alpha2().ClusterLifecycles().List(ctx, options)
-			},
-			WatchFuncWithContext: func(ctx context.Context, options v1.ListOptions) (watch.Interface, error) {
-				if tweakListOptions != nil {
-					tweakListOptions(&options)
-				}
-				return client.KpackV1alpha2().ClusterLifecycles().Watch(ctx, options)
-			},
-		},
-		&apisbuildv1alpha2.ClusterLifecycle{},
-		resyncPeriod,
-		indexers,
-	)
+	_ = "STUB: not implemented"
+	return *new(cache.SharedIndexInformer)
 }
 
 func (f *clusterLifecycleInformer) defaultInformer(client versioned.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
-	return NewFilteredClusterLifecycleInformer(client, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
+	_ = "STUB: not implemented"
+	return *new(cache.SharedIndexInformer)
 }
 
 func (f *clusterLifecycleInformer) Informer() cache.SharedIndexInformer {
-	return f.factory.InformerFor(&apisbuildv1alpha2.ClusterLifecycle{}, f.defaultInformer)
+	_ = "STUB: not implemented"
+	return *new(cache.SharedIndexInformer)
 }
 
 func (f *clusterLifecycleInformer) Lister() buildv1alpha2.ClusterLifecycleLister {
-	return buildv1alpha2.NewClusterLifecycleLister(f.Informer().GetIndexer())
+	_ = "STUB: not implemented"
+	return *new(buildv1alpha2.ClusterLifecycleLister)
 }

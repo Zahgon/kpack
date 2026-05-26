@@ -29,92 +29,40 @@ type FakeClusterStackReader struct {
 }
 
 func (fake *FakeClusterStackReader) Read(arg1 authn.Keychain, arg2 v1alpha2.ClusterStackSpec) (v1alpha2.ResolvedClusterStack, error) {
-	fake.readMutex.Lock()
-	ret, specificReturn := fake.readReturnsOnCall[len(fake.readArgsForCall)]
-	fake.readArgsForCall = append(fake.readArgsForCall, struct {
-		arg1 authn.Keychain
-		arg2 v1alpha2.ClusterStackSpec
-	}{arg1, arg2})
-	stub := fake.ReadStub
-	fakeReturns := fake.readReturns
-	fake.recordInvocation("Read", []interface{}{arg1, arg2})
-	fake.readMutex.Unlock()
-	if stub != nil {
-		return stub(arg1, arg2)
-	}
-	if specificReturn {
-		return ret.result1, ret.result2
-	}
-	return fakeReturns.result1, fakeReturns.result2
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.ResolvedClusterStack), nil
 }
 
-func (fake *FakeClusterStackReader) ReadCallCount() int {
-	fake.readMutex.RLock()
-	defer fake.readMutex.RUnlock()
-	return len(fake.readArgsForCall)
-}
+func (fake *FakeClusterStackReader) ReadCallCount() int { _ = "STUB: not implemented"; return 0 }
 
 func (fake *FakeClusterStackReader) ReadCalls(stub func(authn.Keychain, v1alpha2.ClusterStackSpec) (v1alpha2.ResolvedClusterStack, error)) {
-	fake.readMutex.Lock()
-	defer fake.readMutex.Unlock()
-	fake.ReadStub = stub
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeClusterStackReader) ReadArgsForCall(i int) (authn.Keychain, v1alpha2.ClusterStackSpec) {
-	fake.readMutex.RLock()
-	defer fake.readMutex.RUnlock()
-	argsForCall := fake.readArgsForCall[i]
-	return argsForCall.arg1, argsForCall.arg2
+	_ = "STUB: not implemented"
+	return *new(authn.Keychain), *new(v1alpha2.ClusterStackSpec)
 }
 
 func (fake *FakeClusterStackReader) ReadReturns(result1 v1alpha2.ResolvedClusterStack, result2 error) {
-	fake.readMutex.Lock()
-	defer fake.readMutex.Unlock()
-	fake.ReadStub = nil
-	fake.readReturns = struct {
-		result1 v1alpha2.ResolvedClusterStack
-		result2 error
-	}{result1, result2}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeClusterStackReader) ReadReturnsOnCall(i int, result1 v1alpha2.ResolvedClusterStack, result2 error) {
-	fake.readMutex.Lock()
-	defer fake.readMutex.Unlock()
-	fake.ReadStub = nil
-	if fake.readReturnsOnCall == nil {
-		fake.readReturnsOnCall = make(map[int]struct {
-			result1 v1alpha2.ResolvedClusterStack
-			result2 error
-		})
-	}
-	fake.readReturnsOnCall[i] = struct {
-		result1 v1alpha2.ResolvedClusterStack
-		result2 error
-	}{result1, result2}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeClusterStackReader) Invocations() map[string][][]interface{} {
-	fake.invocationsMutex.RLock()
-	defer fake.invocationsMutex.RUnlock()
-	fake.readMutex.RLock()
-	defer fake.readMutex.RUnlock()
-	copiedInvocations := map[string][][]interface{}{}
-	for key, value := range fake.invocations {
-		copiedInvocations[key] = value
-	}
-	return copiedInvocations
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (fake *FakeClusterStackReader) recordInvocation(key string, args []interface{}) {
-	fake.invocationsMutex.Lock()
-	defer fake.invocationsMutex.Unlock()
-	if fake.invocations == nil {
-		fake.invocations = map[string][][]interface{}{}
-	}
-	if fake.invocations[key] == nil {
-		fake.invocations[key] = [][]interface{}{}
-	}
-	fake.invocations[key] = append(fake.invocations[key], args)
+	_ = "STUB: not implemented"
+	return
 }
 
 var _ clusterstack.ClusterStackReader = new(FakeClusterStackReader)

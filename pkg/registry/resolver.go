@@ -11,15 +11,11 @@ type Resolver struct {
 }
 
 func (*Resolver) Resolve(ctx context.Context, sourceResolver *buildapi.SourceResolver) (corev1alpha1.ResolvedSourceConfig, error) {
-	return corev1alpha1.ResolvedSourceConfig{
-		Registry: &corev1alpha1.ResolvedRegistrySource{
-			Image:            sourceResolver.Spec.Source.Registry.Image,
-			ImagePullSecrets: sourceResolver.Spec.Source.Registry.ImagePullSecrets,
-			SubPath:          sourceResolver.Spec.Source.SubPath,
-		},
-	}, nil
+	_ = "STUB: not implemented"
+	return *new(corev1alpha1.ResolvedSourceConfig), nil
 }
 
 func (*Resolver) CanResolve(sourceResolver *buildapi.SourceResolver) bool {
-	return sourceResolver.IsRegistry()
+	_ = "STUB: not implemented"
+	return false
 }

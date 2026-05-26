@@ -11,11 +11,6 @@ type BuildpackMetadata struct {
 }
 
 func (l BuildpackMetadataList) Include(q BuildpackMetadata) bool {
-	for _, bp := range l {
-		if bp.Id == q.Id && bp.Version == q.Version {
-			return true
-		}
-	}
-
+	_ = "STUB: not implemented"
 	return false
 }

@@ -16,16 +16,13 @@ type FakeProvisionedService struct {
 }
 
 func (ps *FakeProvisionedService) DeepCopyObject() runtime.Object {
-	return &FakeProvisionedService{
-		TypeMeta:   ps.TypeMeta,
-		ObjectMeta: ps.ObjectMeta,
-		Spec:       ps.Spec,
-		Status:     ps.Status,
-	}
+	_ = "STUB: not implemented"
+	return *new(runtime.Object)
 }
 
 func (ps *FakeProvisionedService) GetGroupVersionKind() schema.GroupVersionKind {
-	return ps.GroupVersionKind()
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }
 
 type ProvisionedServiceSpec struct {

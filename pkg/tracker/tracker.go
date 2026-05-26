@@ -32,12 +32,8 @@ import (
 )
 
 func New(callback func(types.NamespacedName), lease time.Duration) *Tracker {
-	return &Tracker{
-		objects:       make(map[string]set),
-		kinds:         make(map[string]set),
-		leaseDuration: lease,
-		cb:            callback,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type Tracker struct {
@@ -62,71 +58,29 @@ type set map[types.NamespacedName]time.Time
 
 // Track implements Interface.
 func (i *Tracker) Track(ref reconciler.Key, obj types.NamespacedName) {
-	i.m.Lock()
-	defer i.m.Unlock()
-
-	l, ok := i.objects[ref.String()]
-	if !ok {
-		l = set{}
-	}
-	// Overwrite the key with a new expiration.
-	l[obj] = time.Now().Add(i.leaseDuration)
-
-	i.objects[ref.String()] = l
+	_ = "STUB: not implemented"
+	return
 }
 
-func isExpired(expiry time.Time) bool {
-	return time.Now().After(expiry)
-}
+// Overwrite the key with a new expiration.
+
+func isExpired(expiry time.Time) bool { _ = "STUB: not implemented"; return false }
 
 func (i *Tracker) TrackKind(kind schema.GroupKind, obj types.NamespacedName) {
-	i.m.Lock()
-	defer i.m.Unlock()
-
-	l, ok := i.kinds[kind.String()]
-	if !ok {
-		l = set{}
-	}
-	// Overwrite the key with a new expiration.
-	l[obj] = time.Now().Add(i.leaseDuration)
-
-	i.kinds[kind.String()] = l
+	_ = "STUB: not implemented"
+	return
 }
+
+// Overwrite the key with a new expiration.
 
 // OnChanged implements Interface.
-func (i *Tracker) OnChanged(obj interface{}) {
-	reconcilerObj, ok := obj.(reconciler.Object)
-	if !ok {
-		return
-	}
+func (i *Tracker) OnChanged(obj interface{}) { _ = "STUB: not implemented"; return }
 
-	key := reconciler.KeyForObject(reconcilerObj)
+// TODO(mattmoor): Consider locking the mapping (global) for a
+// smaller scope and leveraging a per-set lock to guard its access.
 
-	// TODO(mattmoor): Consider locking the mapping (global) for a
-	// smaller scope and leveraging a per-set lock to guard its access.
-	i.m.Lock()
-	defer i.m.Unlock()
-	i.notify(i.objects, key.String())
-	i.notify(i.kinds, key.GroupKind.String())
-}
+func (i *Tracker) notify(mapping map[string]set, key string) { _ = "STUB: not implemented"; return }
 
-func (i *Tracker) notify(mapping map[string]set, key string) {
-	s, ok := mapping[key]
-	if !ok {
-		// TODO(mattmoor): We should consider logging here.
-		return
-	}
+// TODO(mattmoor): We should consider logging here.
 
-	for key, expiry := range s {
-		// If the expiration has lapsed, then delete the key.
-		if isExpired(expiry) {
-			delete(s, key)
-			continue
-		}
-		i.cb(key)
-	}
-
-	if len(s) == 0 {
-		delete(mapping, key)
-	}
-}
+// If the expiration has lapsed, then delete the key.

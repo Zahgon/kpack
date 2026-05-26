@@ -21,8 +21,6 @@ package v1alpha1
 import (
 	http "net/http"
 
-	buildv1alpha1 "github.com/pivotal/kpack/pkg/apis/build/v1alpha1"
-	scheme "github.com/pivotal/kpack/pkg/client/clientset/versioned/scheme"
 	rest "k8s.io/client-go/rest"
 )
 
@@ -43,89 +41,67 @@ type KpackV1alpha1Client struct {
 }
 
 func (c *KpackV1alpha1Client) Builds(namespace string) BuildInterface {
-	return newBuilds(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(BuildInterface)
 }
 
 func (c *KpackV1alpha1Client) Builders(namespace string) BuilderInterface {
-	return newBuilders(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(BuilderInterface)
 }
 
 func (c *KpackV1alpha1Client) ClusterBuilders() ClusterBuilderInterface {
-	return newClusterBuilders(c)
+	_ = "STUB: not implemented"
+	return *new(ClusterBuilderInterface)
 }
 
 func (c *KpackV1alpha1Client) ClusterStacks() ClusterStackInterface {
-	return newClusterStacks(c)
+	_ = "STUB: not implemented"
+	return *new(ClusterStackInterface)
 }
 
 func (c *KpackV1alpha1Client) ClusterStores() ClusterStoreInterface {
-	return newClusterStores(c)
+	_ = "STUB: not implemented"
+	return *new(ClusterStoreInterface)
 }
 
 func (c *KpackV1alpha1Client) Images(namespace string) ImageInterface {
-	return newImages(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(ImageInterface)
 }
 
 func (c *KpackV1alpha1Client) SourceResolvers(namespace string) SourceResolverInterface {
-	return newSourceResolvers(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(SourceResolverInterface)
 }
 
 // NewForConfig creates a new KpackV1alpha1Client for the given config.
 // NewForConfig is equivalent to NewForConfigAndClient(c, httpClient),
 // where httpClient was generated with rest.HTTPClientFor(c).
 func NewForConfig(c *rest.Config) (*KpackV1alpha1Client, error) {
-	config := *c
-	setConfigDefaults(&config)
-	httpClient, err := rest.HTTPClientFor(&config)
-	if err != nil {
-		return nil, err
-	}
-	return NewForConfigAndClient(&config, httpClient)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // NewForConfigAndClient creates a new KpackV1alpha1Client for the given config and http client.
 // Note the http client provided takes precedence over the configured transport values.
 func NewForConfigAndClient(c *rest.Config, h *http.Client) (*KpackV1alpha1Client, error) {
-	config := *c
-	setConfigDefaults(&config)
-	client, err := rest.RESTClientForConfigAndClient(&config, h)
-	if err != nil {
-		return nil, err
-	}
-	return &KpackV1alpha1Client{client}, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // NewForConfigOrDie creates a new KpackV1alpha1Client for the given config and
 // panics if there is an error in the config.
-func NewForConfigOrDie(c *rest.Config) *KpackV1alpha1Client {
-	client, err := NewForConfig(c)
-	if err != nil {
-		panic(err)
-	}
-	return client
-}
+func NewForConfigOrDie(c *rest.Config) *KpackV1alpha1Client { _ = "STUB: not implemented"; return nil }
 
 // New creates a new KpackV1alpha1Client for the given RESTClient.
-func New(c rest.Interface) *KpackV1alpha1Client {
-	return &KpackV1alpha1Client{c}
-}
+func New(c rest.Interface) *KpackV1alpha1Client { _ = "STUB: not implemented"; return nil }
 
-func setConfigDefaults(config *rest.Config) {
-	gv := buildv1alpha1.SchemeGroupVersion
-	config.GroupVersion = &gv
-	config.APIPath = "/apis"
-	config.NegotiatedSerializer = rest.CodecFactoryForGeneratedClient(scheme.Scheme, scheme.Codecs).WithoutConversion()
-
-	if config.UserAgent == "" {
-		config.UserAgent = rest.DefaultKubernetesUserAgent()
-	}
-}
+func setConfigDefaults(config *rest.Config) { _ = "STUB: not implemented"; return }
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
 func (c *KpackV1alpha1Client) RESTClient() rest.Interface {
-	if c == nil {
-		return nil
-	}
-	return c.restClient
+	_ = "STUB: not implemented"
+	return *new(rest.Interface)
 }

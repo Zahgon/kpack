@@ -52,9 +52,11 @@ type BuildpackList struct {
 }
 
 func (*Buildpack) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind(BuildpackKind)
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }
 
 func (c *Buildpack) NamespacedName() types.NamespacedName {
-	return types.NamespacedName{Namespace: c.Namespace, Name: c.Name}
+	_ = "STUB: not implemented"
+	return *new(types.NamespacedName)
 }

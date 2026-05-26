@@ -19,7 +19,6 @@ package v1alpha1
 import (
 	"context"
 
-	"github.com/pkg/errors"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -89,19 +88,23 @@ type ImageList struct {
 }
 
 func (*Image) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind("Image")
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }
 
 func (i *Image) NamespacedName() types.NamespacedName {
-	return types.NamespacedName{Namespace: i.Namespace, Name: i.Name}
+	_ = "STUB: not implemented"
+	return *new(types.NamespacedName)
 }
 
 func (i *Image) ConvertTo(_ context.Context, _ apis.Convertible) error {
-	return errors.New("called convertTo in non-hub apiVersion v1alpha1")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (i *Image) ConvertFrom(_ context.Context, _ apis.Convertible) error {
-	return errors.New("called convertFrom in non-hub apiVersion v1alpha1")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 const ConditionBuilderReady corev1alpha1.ConditionType = "BuilderReady"

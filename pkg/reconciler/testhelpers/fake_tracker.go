@@ -1,8 +1,6 @@
 package testhelpers
 
 import (
-	"fmt"
-
 	"github.com/pivotal/kpack/pkg/reconciler"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/types"
@@ -14,55 +12,25 @@ type FakeTracker struct {
 }
 
 func (f *FakeTracker) Track(ref reconciler.Key, obj types.NamespacedName) {
-	if f.objects == nil {
-		f.objects = make(map[string]map[types.NamespacedName]struct{})
-	}
-
-	_, ok := f.objects[ref.String()]
-	if !ok {
-		f.objects[ref.String()] = map[types.NamespacedName]struct{}{}
-	}
-
-	f.objects[ref.String()][obj] = struct{}{}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (f *FakeTracker) TrackKind(kind schema.GroupKind, obj types.NamespacedName) {
-	if f.kinds == nil {
-		f.kinds = make(map[string]map[types.NamespacedName]struct{})
-	}
-
-	_, ok := f.kinds[kind.String()]
-	if !ok {
-		f.kinds[kind.String()] = map[types.NamespacedName]struct{}{}
-	}
-
-	f.kinds[kind.String()][obj] = struct{}{}
+	_ = "STUB: not implemented"
+	return
 }
 
-func (*FakeTracker) OnChanged(obj interface{}) {
-	panic("I should not be called in tests")
-}
+func (*FakeTracker) OnChanged(obj interface{}) { _ = "STUB: not implemented"; return }
 
 func (f *FakeTracker) IsTracking(ref reconciler.Key, obj types.NamespacedName) bool {
-	trackingObs, ok := f.objects[ref.String()]
-	if !ok {
-		return false
-	}
-	_, ok = trackingObs[obj]
-
-	return ok
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (f *FakeTracker) IsTrackingKind(kind schema.GroupKind, obj types.NamespacedName) bool {
-	trackingObs, ok := f.kinds[kind.String()]
-	if !ok {
-		return false
-	}
-	_, ok = trackingObs[obj]
-
-	return ok
+	_ = "STUB: not implemented"
+	return false
 }
 
-func (f FakeTracker) String() string {
-	return fmt.Sprintf("%#v", f)
-}
+func (f FakeTracker) String() string { _ = "STUB: not implemented"; return "" }

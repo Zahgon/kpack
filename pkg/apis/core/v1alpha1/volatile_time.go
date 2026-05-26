@@ -30,13 +30,14 @@ type VolatileTime struct {
 
 // MarshalJSON implements the json.Marshaler interface.
 func (t VolatileTime) MarshalJSON() ([]byte, error) {
-	return t.Inner.MarshalJSON()
+	_ = "STUB: not implemented"
+	return nil,
+
+		// UnmarshalJSON implements the json.Unmarshaller interface.
+		nil
 }
 
-// UnmarshalJSON implements the json.Unmarshaller interface.
-func (t *VolatileTime) UnmarshalJSON(b []byte) error {
-	return t.Inner.UnmarshalJSON(b)
-}
+func (t *VolatileTime) UnmarshalJSON(b []byte) error { _ = "STUB: not implemented"; return nil }
 
 func init() {
 	equality.Semantic.AddFunc(

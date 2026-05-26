@@ -86,28 +86,13 @@ type Condition struct {
 }
 
 // IsTrue is true if the condition is True
-func (c *Condition) IsTrue() bool {
-	if c == nil {
-		return false
-	}
-	return c.Status == corev1.ConditionTrue
-}
+func (c *Condition) IsTrue() bool { _ = "STUB: not implemented"; return false }
 
 // IsFalse is true if the condition is False
-func (c *Condition) IsFalse() bool {
-	if c == nil {
-		return false
-	}
-	return c.Status == corev1.ConditionFalse
-}
+func (c *Condition) IsFalse() bool { _ = "STUB: not implemented"; return false }
 
 // IsUnknown is true if the condition is Unknown
-func (c *Condition) IsUnknown() bool {
-	if c == nil {
-		return true
-	}
-	return c.Status == corev1.ConditionUnknown
-}
+func (c *Condition) IsUnknown() bool { _ = "STUB: not implemented"; return false }
 
 // Status shows how we expect folks to embed Conditions in
 // their Status field.
@@ -127,11 +112,4 @@ type Status struct {
 	Conditions Conditions `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
 }
 
-func (s *Status) GetCondition(t ConditionType) *Condition {
-	for _, cond := range s.Conditions {
-		if cond.Type == t {
-			return &cond
-		}
-	}
-	return nil
-}
+func (s *Status) GetCondition(t ConditionType) *Condition { _ = "STUB: not implemented"; return nil }

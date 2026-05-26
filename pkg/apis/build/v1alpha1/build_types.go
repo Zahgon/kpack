@@ -19,7 +19,6 @@ package v1alpha1
 import (
 	"context"
 
-	"github.com/pkg/errors"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"knative.dev/pkg/apis"
@@ -93,9 +92,11 @@ type BuildList struct {
 }
 
 func (*Build) ConvertTo(_ context.Context, _ apis.Convertible) error {
-	return errors.New("called convertTo in non-hub apiVersion v1alpha1")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (*Build) ConvertFrom(_ context.Context, _ apis.Convertible) error {
-	return errors.New("called convertFrom in non-hub apiVersion v1alpha1")
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -20,10 +20,6 @@ type GenericChange struct {
 }
 
 func newGenericChange(change Change) GenericChange {
-	return GenericChange{
-		Reason:   string(change.Reason()),
-		Old:      change.Old(),
-		New:      change.New(),
-		Priority: change.Priority(),
-	}
+	_ = "STUB: not implemented"
+	return *new(GenericChange)
 }

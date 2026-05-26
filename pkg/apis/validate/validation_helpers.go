@@ -1,77 +1,27 @@
 package validate
 
 import (
-	"fmt"
-
-	"github.com/google/go-containerregistry/pkg/name"
 	"knative.dev/pkg/apis"
 )
 
-func FieldNotEmpty(value, field string) *apis.FieldError {
-	if value == "" {
-		return apis.ErrMissingField(field)
-	}
-	return nil
-}
+func FieldNotEmpty(value, field string) *apis.FieldError { _ = "STUB: not implemented"; return nil }
 
 func ListNotEmpty(value []string, field string) *apis.FieldError {
-	if len(value) == 0 {
-		return apis.ErrMissingField(field)
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
 func ImmutableField(original, current interface{}, field string) *apis.FieldError {
-	if original != current {
-		return &apis.FieldError{
-			Message: "Immutable field changed",
-			Paths:   []string{field},
-			Details: fmt.Sprintf("got: %v, want: %v", current, original),
-		}
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
-func Tag(value string) *apis.FieldError {
-	if value == "" {
-		return apis.ErrMissingField("tag")
-	}
+func Tag(value string) *apis.FieldError { _ = "STUB: not implemented"; return nil }
 
-	_, err := name.NewTag(value, name.WeakValidation)
-	if err != nil {
-		return apis.ErrInvalidValue(value, "tag")
-	}
-	return nil
-}
+func Tags(tags []string, fieldName string) *apis.FieldError { _ = "STUB: not implemented"; return nil }
 
-func Tags(tags []string, fieldName string) *apis.FieldError {
-	var errors *apis.FieldError = nil
-	for i, tag := range tags {
-		_, err := name.NewTag(tag, name.WeakValidation)
-		if err != nil {
-			//noinspection GoNilness
-			errors = errors.Also(apis.ErrInvalidArrayValue(tag, fieldName, i))
-		}
-	}
-	return errors
-}
+//noinspection GoNilness
 
-func Image(value string) *apis.FieldError {
-	if value == "" {
-		return apis.ErrMissingField("image")
-	}
+func Image(value string) *apis.FieldError { _ = "STUB: not implemented"; return nil }
 
-	_, err := name.ParseReference(value, name.WeakValidation)
-	if err != nil {
-		return apis.ErrInvalidValue(value, "image")
-	}
-	return nil
-}
-
-func StripComponents(value int64) *apis.FieldError {
-	if value >= 0 {
-		return nil
-	}
-
-	return apis.ErrGeneric(fmt.Sprintf("expected positive integer got %d", value), "stripComponents")
-}
+func StripComponents(value int64) *apis.FieldError { _ = "STUB: not implemented"; return nil }

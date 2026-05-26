@@ -85,5 +85,6 @@ type ClusterLifecycleList struct {
 }
 
 func (*ClusterLifecycle) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind(ClusterLifecycleKind)
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }

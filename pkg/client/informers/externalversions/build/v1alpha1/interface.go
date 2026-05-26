@@ -48,40 +48,42 @@ type version struct {
 
 // New returns a new Interface.
 func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) Interface {
-	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(Interface)
 }
 
 // Builds returns a BuildInformer.
-func (v *version) Builds() BuildInformer {
-	return &buildInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
-}
+func (v *version) Builds() BuildInformer { _ = "STUB: not implemented"; return *new(BuildInformer) }
 
 // Builders returns a BuilderInformer.
 func (v *version) Builders() BuilderInformer {
-	return &builderInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(BuilderInformer)
 }
 
 // ClusterBuilders returns a ClusterBuilderInformer.
 func (v *version) ClusterBuilders() ClusterBuilderInformer {
-	return &clusterBuilderInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(ClusterBuilderInformer)
 }
 
 // ClusterStacks returns a ClusterStackInformer.
 func (v *version) ClusterStacks() ClusterStackInformer {
-	return &clusterStackInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(ClusterStackInformer)
 }
 
 // ClusterStores returns a ClusterStoreInformer.
 func (v *version) ClusterStores() ClusterStoreInformer {
-	return &clusterStoreInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(ClusterStoreInformer)
 }
 
 // Images returns a ImageInformer.
-func (v *version) Images() ImageInformer {
-	return &imageInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
-}
+func (v *version) Images() ImageInformer { _ = "STUB: not implemented"; return *new(ImageInformer) }
 
 // SourceResolvers returns a SourceResolverInformer.
 func (v *version) SourceResolvers() SourceResolverInformer {
-	return &sourceResolverInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(SourceResolverInformer)
 }

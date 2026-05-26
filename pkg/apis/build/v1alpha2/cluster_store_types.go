@@ -53,5 +53,6 @@ type ClusterStoreList struct {
 }
 
 func (*ClusterStore) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind(ClusterStoreKind)
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }

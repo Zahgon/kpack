@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -135,40 +134,16 @@ func main() {
 	fmt.Print(string(buf2))
 }
 
-func fixName(name string) string {
-	name = strings.ReplaceAll(name, "/", ".")
-	if strings.Contains(name, "github.com.pivotal") {
-		return strings.ReplaceAll(name, "github.com.pivotal.kpack.pkg.apis", "kpack")
-	}
-	if strings.Contains(name, "k8s.io") {
-		return strings.ReplaceAll(name, "k8s.io", "io.k8s")
-	}
-	return name
-}
+func fixName(name string) string { _ = "STUB: not implemented"; return "" }
 
 func getCRDPaths(t *template.Template, crd CRD) map[string]spec.PathItem {
-	buf := &bytes.Buffer{}
-	err := t.Execute(buf, crd)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	paths := map[string]spec.PathItem{}
-	if err := json.Unmarshal(buf.Bytes(), &paths); err != nil {
-		log.Fatal(err)
-	}
-
-	return paths
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func combineCRDPaths(paths ...map[string]spec.PathItem) map[string]spec.PathItem {
-	combined := map[string]spec.PathItem{}
-	for _, m := range paths {
-		for k, v := range m {
-			combined[k] = v
-		}
-	}
-	return combined
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // The following are the kubernetes schema definitions required by kpack. They have been cherry-picked from: https://github.com/kubernetes/kubernetes/tree/master/api/openapi-spec

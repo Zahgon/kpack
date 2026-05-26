@@ -30,93 +30,43 @@ type FakeMetadataRetriever struct {
 }
 
 func (fake *FakeMetadataRetriever) GetBuildMetadata(arg1 string, arg2 string, arg3 authn.Keychain) (*cnb.BuildMetadata, error) {
-	fake.getBuildMetadataMutex.Lock()
-	ret, specificReturn := fake.getBuildMetadataReturnsOnCall[len(fake.getBuildMetadataArgsForCall)]
-	fake.getBuildMetadataArgsForCall = append(fake.getBuildMetadataArgsForCall, struct {
-		arg1 string
-		arg2 string
-		arg3 authn.Keychain
-	}{arg1, arg2, arg3})
-	stub := fake.GetBuildMetadataStub
-	fakeReturns := fake.getBuildMetadataReturns
-	fake.recordInvocation("GetBuildMetadata", []interface{}{arg1, arg2, arg3})
-	fake.getBuildMetadataMutex.Unlock()
-	if stub != nil {
-		return stub(arg1, arg2, arg3)
-	}
-	if specificReturn {
-		return ret.result1, ret.result2
-	}
-	return fakeReturns.result1, fakeReturns.result2
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (fake *FakeMetadataRetriever) GetBuildMetadataCallCount() int {
-	fake.getBuildMetadataMutex.RLock()
-	defer fake.getBuildMetadataMutex.RUnlock()
-	return len(fake.getBuildMetadataArgsForCall)
+	_ = "STUB: not implemented"
+	return 0
 }
 
 func (fake *FakeMetadataRetriever) GetBuildMetadataCalls(stub func(string, string, authn.Keychain) (*cnb.BuildMetadata, error)) {
-	fake.getBuildMetadataMutex.Lock()
-	defer fake.getBuildMetadataMutex.Unlock()
-	fake.GetBuildMetadataStub = stub
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeMetadataRetriever) GetBuildMetadataArgsForCall(i int) (string, string, authn.Keychain) {
-	fake.getBuildMetadataMutex.RLock()
-	defer fake.getBuildMetadataMutex.RUnlock()
-	argsForCall := fake.getBuildMetadataArgsForCall[i]
-	return argsForCall.arg1, argsForCall.arg2, argsForCall.arg3
+	_ = "STUB: not implemented"
+	return "", "", *new(authn.Keychain)
 }
 
 func (fake *FakeMetadataRetriever) GetBuildMetadataReturns(result1 *cnb.BuildMetadata, result2 error) {
-	fake.getBuildMetadataMutex.Lock()
-	defer fake.getBuildMetadataMutex.Unlock()
-	fake.GetBuildMetadataStub = nil
-	fake.getBuildMetadataReturns = struct {
-		result1 *cnb.BuildMetadata
-		result2 error
-	}{result1, result2}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeMetadataRetriever) GetBuildMetadataReturnsOnCall(i int, result1 *cnb.BuildMetadata, result2 error) {
-	fake.getBuildMetadataMutex.Lock()
-	defer fake.getBuildMetadataMutex.Unlock()
-	fake.GetBuildMetadataStub = nil
-	if fake.getBuildMetadataReturnsOnCall == nil {
-		fake.getBuildMetadataReturnsOnCall = make(map[int]struct {
-			result1 *cnb.BuildMetadata
-			result2 error
-		})
-	}
-	fake.getBuildMetadataReturnsOnCall[i] = struct {
-		result1 *cnb.BuildMetadata
-		result2 error
-	}{result1, result2}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeMetadataRetriever) Invocations() map[string][][]interface{} {
-	fake.invocationsMutex.RLock()
-	defer fake.invocationsMutex.RUnlock()
-	fake.getBuildMetadataMutex.RLock()
-	defer fake.getBuildMetadataMutex.RUnlock()
-	copiedInvocations := map[string][][]interface{}{}
-	for key, value := range fake.invocations {
-		copiedInvocations[key] = value
-	}
-	return copiedInvocations
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (fake *FakeMetadataRetriever) recordInvocation(key string, args []interface{}) {
-	fake.invocationsMutex.Lock()
-	defer fake.invocationsMutex.Unlock()
-	if fake.invocations == nil {
-		fake.invocations = map[string][][]interface{}{}
-	}
-	if fake.invocations[key] == nil {
-		fake.invocations[key] = [][]interface{}{}
-	}
-	fake.invocations[key] = append(fake.invocations[key], args)
+	_ = "STUB: not implemented"
+	return
 }
 
 var _ build.MetadataRetriever = new(FakeMetadataRetriever)

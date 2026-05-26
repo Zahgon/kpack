@@ -25,88 +25,37 @@ type FakeEnqueuer struct {
 }
 
 func (fake *FakeEnqueuer) Enqueue(arg1 *v1alpha2.SourceResolver) error {
-	fake.enqueueMutex.Lock()
-	ret, specificReturn := fake.enqueueReturnsOnCall[len(fake.enqueueArgsForCall)]
-	fake.enqueueArgsForCall = append(fake.enqueueArgsForCall, struct {
-		arg1 *v1alpha2.SourceResolver
-	}{arg1})
-	stub := fake.EnqueueStub
-	fakeReturns := fake.enqueueReturns
-	fake.recordInvocation("Enqueue", []interface{}{arg1})
-	fake.enqueueMutex.Unlock()
-	if stub != nil {
-		return stub(arg1)
-	}
-	if specificReturn {
-		return ret.result1
-	}
-	return fakeReturns.result1
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (fake *FakeEnqueuer) EnqueueCallCount() int {
-	fake.enqueueMutex.RLock()
-	defer fake.enqueueMutex.RUnlock()
-	return len(fake.enqueueArgsForCall)
-}
+func (fake *FakeEnqueuer) EnqueueCallCount() int { _ = "STUB: not implemented"; return 0 }
 
 func (fake *FakeEnqueuer) EnqueueCalls(stub func(*v1alpha2.SourceResolver) error) {
-	fake.enqueueMutex.Lock()
-	defer fake.enqueueMutex.Unlock()
-	fake.EnqueueStub = stub
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeEnqueuer) EnqueueArgsForCall(i int) *v1alpha2.SourceResolver {
-	fake.enqueueMutex.RLock()
-	defer fake.enqueueMutex.RUnlock()
-	argsForCall := fake.enqueueArgsForCall[i]
-	return argsForCall.arg1
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (fake *FakeEnqueuer) EnqueueReturns(result1 error) {
-	fake.enqueueMutex.Lock()
-	defer fake.enqueueMutex.Unlock()
-	fake.EnqueueStub = nil
-	fake.enqueueReturns = struct {
-		result1 error
-	}{result1}
-}
+func (fake *FakeEnqueuer) EnqueueReturns(result1 error) { _ = "STUB: not implemented"; return }
 
 func (fake *FakeEnqueuer) EnqueueReturnsOnCall(i int, result1 error) {
-	fake.enqueueMutex.Lock()
-	defer fake.enqueueMutex.Unlock()
-	fake.EnqueueStub = nil
-	if fake.enqueueReturnsOnCall == nil {
-		fake.enqueueReturnsOnCall = make(map[int]struct {
-			result1 error
-		})
-	}
-	fake.enqueueReturnsOnCall[i] = struct {
-		result1 error
-	}{result1}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeEnqueuer) Invocations() map[string][][]interface{} {
-	fake.invocationsMutex.RLock()
-	defer fake.invocationsMutex.RUnlock()
-	fake.enqueueMutex.RLock()
-	defer fake.enqueueMutex.RUnlock()
-	copiedInvocations := map[string][][]interface{}{}
-	for key, value := range fake.invocations {
-		copiedInvocations[key] = value
-	}
-	return copiedInvocations
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (fake *FakeEnqueuer) recordInvocation(key string, args []interface{}) {
-	fake.invocationsMutex.Lock()
-	defer fake.invocationsMutex.Unlock()
-	if fake.invocations == nil {
-		fake.invocations = map[string][][]interface{}{}
-	}
-	if fake.invocations[key] == nil {
-		fake.invocations[key] = [][]interface{}{}
-	}
-	fake.invocations[key] = append(fake.invocations[key], args)
+	_ = "STUB: not implemented"
+	return
 }
 
 var _ sourceresolver.Enqueuer = new(FakeEnqueuer)

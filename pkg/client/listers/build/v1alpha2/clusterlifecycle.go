@@ -44,5 +44,6 @@ type clusterLifecycleLister struct {
 
 // NewClusterLifecycleLister returns a new ClusterLifecycleLister.
 func NewClusterLifecycleLister(indexer cache.Indexer) ClusterLifecycleLister {
-	return &clusterLifecycleLister{listers.New[*buildv1alpha2.ClusterLifecycle](indexer, buildv1alpha2.Resource("clusterlifecycle"))}
+	_ = "STUB: not implemented"
+	return *new(ClusterLifecycleLister)
 }

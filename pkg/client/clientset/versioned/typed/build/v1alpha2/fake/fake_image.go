@@ -31,18 +31,6 @@ type fakeImages struct {
 }
 
 func newFakeImages(fake *FakeKpackV1alpha2, namespace string) buildv1alpha2.ImageInterface {
-	return &fakeImages{
-		gentype.NewFakeClientWithList[*v1alpha2.Image, *v1alpha2.ImageList](
-			fake.Fake,
-			namespace,
-			v1alpha2.SchemeGroupVersion.WithResource("images"),
-			v1alpha2.SchemeGroupVersion.WithKind("Image"),
-			func() *v1alpha2.Image { return &v1alpha2.Image{} },
-			func() *v1alpha2.ImageList { return &v1alpha2.ImageList{} },
-			func(dst, src *v1alpha2.ImageList) { dst.ListMeta = src.ListMeta },
-			func(list *v1alpha2.ImageList) []*v1alpha2.Image { return gentype.ToPointerSlice(list.Items) },
-			func(list *v1alpha2.ImageList, items []*v1alpha2.Image) { list.Items = gentype.FromPointerSlice(items) },
-		),
-		fake,
-	}
+	_ = "STUB: not implemented"
+	return *new(buildv1alpha2.ImageInterface)
 }

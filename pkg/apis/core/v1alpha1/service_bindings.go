@@ -9,9 +9,7 @@ type ServiceBinding struct {
 	SecretRef *corev1.LocalObjectReference
 }
 
-func (s *ServiceBinding) ServiceName() string {
-	return s.Name
-}
+func (s *ServiceBinding) ServiceName() string { _ = "STUB: not implemented"; return "" }
 
 type CNBServiceBinding struct {
 	Name        string
@@ -19,6 +17,4 @@ type CNBServiceBinding struct {
 	MetadataRef *corev1.LocalObjectReference
 }
 
-func (v *CNBServiceBinding) ServiceName() string {
-	return v.Name
-}
+func (v *CNBServiceBinding) ServiceName() string { _ = "STUB: not implemented"; return "" }

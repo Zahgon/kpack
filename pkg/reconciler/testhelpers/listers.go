@@ -1,14 +1,12 @@
 package testhelpers
 
 import (
-	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	fakekubeclientset "k8s.io/client-go/kubernetes/fake"
 	corev1listers "k8s.io/client-go/listers/core/v1"
 	"k8s.io/client-go/tools/cache"
 	"knative.dev/pkg/reconciler/testing"
 
-	buildapi "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
 	"github.com/pivotal/kpack/pkg/client/clientset/versioned/fake"
 	buildlisters "github.com/pivotal/kpack/pkg/client/listers/build/v1alpha2"
 	"github.com/pivotal/kpack/pkg/duckbuilder"
@@ -23,89 +21,83 @@ type Listers struct {
 	sorter testing.ObjectSorter
 }
 
-func NewListers(objs []runtime.Object) Listers {
-	scheme := runtime.NewScheme()
-
-	for _, addTo := range clientSetSchemes {
-		addTo(scheme)
-	}
-
-	ls := Listers{
-		sorter: testing.NewObjectSorter(scheme),
-	}
-
-	ls.sorter.AddObjects(objs...)
-
-	return ls
-}
+func NewListers(objs []runtime.Object) Listers { _ = "STUB: not implemented"; return *new(Listers) }
 
 func (l *Listers) indexerFor(obj runtime.Object) cache.Indexer {
-	return l.sorter.IndexerForObjectType(obj)
+	_ = "STUB: not implemented"
+	return *new(cache.Indexer)
 }
 
-func (l *Listers) BuildServiceObjects() []runtime.Object {
-	return l.sorter.ObjectsForSchemeFunc(fake.AddToScheme)
-}
+func (l *Listers) BuildServiceObjects() []runtime.Object { _ = "STUB: not implemented"; return nil }
 
-func (l *Listers) GetKubeObjects() []runtime.Object {
-	return l.sorter.ObjectsForSchemeFunc(fakekubeclientset.AddToScheme)
-}
+func (l *Listers) GetKubeObjects() []runtime.Object { _ = "STUB: not implemented"; return nil }
 
 func (l *Listers) GetImageLister() buildlisters.ImageLister {
-	return buildlisters.NewImageLister(l.indexerFor(&buildapi.Image{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.ImageLister)
 }
 
 func (l *Listers) GetBuildLister() buildlisters.BuildLister {
-	return buildlisters.NewBuildLister(l.indexerFor(&buildapi.Build{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.BuildLister)
 }
 
 func (l *Listers) GetBuilderLister() buildlisters.BuilderLister {
-	return buildlisters.NewBuilderLister(l.indexerFor(&buildapi.Builder{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.BuilderLister)
 }
 
 func (l *Listers) GetBuildpackLister() buildlisters.BuildpackLister {
-	return buildlisters.NewBuildpackLister(l.indexerFor(&buildapi.Buildpack{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.BuildpackLister)
 }
 
 func (l *Listers) GetClusterBuilderLister() buildlisters.ClusterBuilderLister {
-	return buildlisters.NewClusterBuilderLister(l.indexerFor(&buildapi.ClusterBuilder{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.ClusterBuilderLister)
 }
 
 func (l *Listers) GetClusterBuildpackLister() buildlisters.ClusterBuildpackLister {
-	return buildlisters.NewClusterBuildpackLister(l.indexerFor(&buildapi.ClusterBuildpack{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.ClusterBuildpackLister)
 }
 
 func (l *Listers) GetClusterStoreLister() buildlisters.ClusterStoreLister {
-	return buildlisters.NewClusterStoreLister(l.indexerFor(&buildapi.ClusterStore{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.ClusterStoreLister)
 }
 
 func (l *Listers) GetClusterStackLister() buildlisters.ClusterStackLister {
-	return buildlisters.NewClusterStackLister(l.indexerFor(&buildapi.ClusterStack{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.ClusterStackLister)
 }
 
 func (l *Listers) GetClusterLifecycleLister() buildlisters.ClusterLifecycleLister {
-	return buildlisters.NewClusterLifecycleLister(l.indexerFor(&buildapi.ClusterLifecycle{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.ClusterLifecycleLister)
 }
 
 func (l *Listers) GetSourceResolverLister() buildlisters.SourceResolverLister {
-	return buildlisters.NewSourceResolverLister(l.indexerFor(&buildapi.SourceResolver{}))
+	_ = "STUB: not implemented"
+	return *new(buildlisters.SourceResolverLister)
 }
 
 func (l *Listers) GetPersistentVolumeClaimLister() corev1listers.PersistentVolumeClaimLister {
-	return corev1listers.NewPersistentVolumeClaimLister(l.indexerFor(&corev1.PersistentVolumeClaim{}))
+	_ = "STUB: not implemented"
+	return *new(corev1listers.PersistentVolumeClaimLister)
 }
 
 func (l *Listers) GetPodLister() corev1listers.PodLister {
-	return corev1listers.NewPodLister(l.indexerFor(&corev1.Pod{}))
+	_ = "STUB: not implemented"
+	return *new(corev1listers.PodLister)
 }
 
 func (l *Listers) GetConfigMapLister() corev1listers.ConfigMapLister {
-	return corev1listers.NewConfigMapLister(l.indexerFor(&corev1.ConfigMap{}))
+	_ = "STUB: not implemented"
+	return *new(corev1listers.ConfigMapLister)
 }
 
 func (l *Listers) GetDuckBuilderLister() *duckbuilder.DuckBuilderLister {
-	return &duckbuilder.DuckBuilderLister{
-		BuilderLister:        l.GetBuilderLister(),
-		ClusterBuilderLister: l.GetClusterBuilderLister(),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -31,22 +31,6 @@ type fakeClusterStacks struct {
 }
 
 func newFakeClusterStacks(fake *FakeKpackV1alpha1) buildv1alpha1.ClusterStackInterface {
-	return &fakeClusterStacks{
-		gentype.NewFakeClientWithList[*v1alpha1.ClusterStack, *v1alpha1.ClusterStackList](
-			fake.Fake,
-			"",
-			v1alpha1.SchemeGroupVersion.WithResource("clusterstacks"),
-			v1alpha1.SchemeGroupVersion.WithKind("ClusterStack"),
-			func() *v1alpha1.ClusterStack { return &v1alpha1.ClusterStack{} },
-			func() *v1alpha1.ClusterStackList { return &v1alpha1.ClusterStackList{} },
-			func(dst, src *v1alpha1.ClusterStackList) { dst.ListMeta = src.ListMeta },
-			func(list *v1alpha1.ClusterStackList) []*v1alpha1.ClusterStack {
-				return gentype.ToPointerSlice(list.Items)
-			},
-			func(list *v1alpha1.ClusterStackList, items []*v1alpha1.ClusterStack) {
-				list.Items = gentype.FromPointerSlice(items)
-			},
-		),
-		fake,
-	}
+	_ = "STUB: not implemented"
+	return *new(buildv1alpha1.ClusterStackInterface)
 }

@@ -12,7 +12,6 @@ import (
 	"github.com/sigstore/cosign/v2/cmd/cosign/cli/sign"
 	ociremote "github.com/sigstore/cosign/v2/pkg/oci/remote"
 	"go.uber.org/zap"
-	"golang.org/x/sync/errgroup"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
@@ -22,11 +21,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"knative.dev/pkg/configmap/informer"
 	"knative.dev/pkg/controller"
-	"knative.dev/pkg/injection"
-	"knative.dev/pkg/injection/sharedmain"
-	"knative.dev/pkg/logging"
 	"knative.dev/pkg/metrics"
-	"knative.dev/pkg/profiling"
 	"knative.dev/pkg/signals"
 
 	"github.com/pivotal/kpack/cmd"
@@ -274,59 +269,34 @@ func main() {
 }
 
 func run(ctrl *controller.Impl, threadiness int) doneFunc {
-	return func(ctx context.Context) error {
-		return ctrl.RunContext(ctx, threadiness)
-	}
+	_ = "STUB: not implemented"
+	return *new(doneFunc)
 }
 
 type doneFunc func(ctx context.Context) error
 
 func runGroup(ctx context.Context, fns ...func(ctx context.Context) error) error {
-	eg, egCtx := errgroup.WithContext(ctx)
-	for _, fn := range fns {
-		fnCopy := fn
-		eg.Go(func() error {
-			return fnCopy(egCtx)
-		})
-	}
-
-	return eg.Wait()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 const controllerCount = 7
 
 // lifted from knative.dev/pkg/injection/sharedmain
 func genericControllerSetup(ctx context.Context, restCfg *rest.Config) (*zap.SugaredLogger, *informer.InformedWatcher, *http.Server) {
-	metrics.MemStatsOrDie(ctx)
+	_ = "STUB: not implemented"
+	return nil,
 
-	// Adjust our client's rate limits based on the number of controllers we are running.
-	restCfg.QPS = float32(controllerCount) * rest.DefaultQPS * float32(cfg.ScalingFactor)
-	restCfg.Burst = controllerCount * rest.DefaultBurst * cfg.ScalingFactor
-	ctx, _ = injection.Default.SetupInformers(ctx, restCfg)
-
-	logger, atomicLevel := sharedmain.SetupLoggerOrDie(ctx, component)
-	ctx = logging.WithLogger(ctx, logger)
-	profilingHandler := profiling.NewHandler(logger, false)
-	profilingServer := profiling.NewServer(profilingHandler)
-
-	sharedmain.CheckK8sClientMinimumVersionOrDie(ctx, logger)
-	cmw := sharedmain.SetupConfigMapWatchOrDie(ctx, logger)
-	sharedmain.WatchLoggingConfigOrDie(ctx, cmw, logger, atomicLevel, component)
-	sharedmain.WatchObservabilityConfigOrDie(ctx, cmw, profilingHandler, logger, component)
-
-	return logger, cmw, profilingServer
+		// Adjust our client's rate limits based on the number of controllers we are running.
+		nil, nil
 }
 
 func waitForSync(stopCh <-chan struct{}, indexFormers ...cache.SharedIndexInformer) {
-	for _, informer := range indexFormers {
-		cache.WaitForCacheSync(stopCh, informer.HasSynced)
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 func parseMaxPlatformApiVersion() (*semver.Version, error) {
-	if cfg.MaximumPlatformApiVersion != "" {
-		return semver.NewVersion(cfg.MaximumPlatformApiVersion)
-	}
-
+	_ = "STUB: not implemented"
 	return nil, nil
 }

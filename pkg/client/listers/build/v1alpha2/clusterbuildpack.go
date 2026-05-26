@@ -44,5 +44,6 @@ type clusterBuildpackLister struct {
 
 // NewClusterBuildpackLister returns a new ClusterBuildpackLister.
 func NewClusterBuildpackLister(indexer cache.Indexer) ClusterBuildpackLister {
-	return &clusterBuildpackLister{listers.New[*buildv1alpha2.ClusterBuildpack](indexer, buildv1alpha2.Resource("clusterbuildpack"))}
+	_ = "STUB: not implemented"
+	return *new(ClusterBuildpackLister)
 }

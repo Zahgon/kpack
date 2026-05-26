@@ -1,7 +1,6 @@
 package duckbuilder
 
 import (
-	"github.com/pkg/errors"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/client-go/tools/cache"
 
@@ -16,19 +15,16 @@ type DuckBuilderInformer struct {
 }
 
 func (di *DuckBuilderInformer) AddBuilderEventHandler(handler cache.ResourceEventHandler) {
-	di.BuilderInformer.Informer().AddEventHandler(handler)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (di *DuckBuilderInformer) AddClusterBuilderEventHandler(handler cache.ResourceEventHandler) {
-	di.ClusterBuilderInformer.Informer().AddEventHandler(handler)
+	_ = "STUB: not implemented"
+	return
 }
 
-func (di *DuckBuilderInformer) Lister() *DuckBuilderLister {
-	return &DuckBuilderLister{
-		BuilderLister:        di.BuilderInformer.Lister(),
-		ClusterBuilderLister: di.ClusterBuilderInformer.Lister(),
-	}
-}
+func (di *DuckBuilderInformer) Lister() *DuckBuilderLister { _ = "STUB: not implemented"; return nil }
 
 type DuckBuilderLister struct {
 	BuilderLister        buildlisters.BuilderLister
@@ -36,10 +32,8 @@ type DuckBuilderLister struct {
 }
 
 func (bl *DuckBuilderLister) Namespace(namespace string) *DuckBuilderNamespaceLister {
-	return &DuckBuilderNamespaceLister{
-		DuckBuilderLister: bl,
-		namespace:         namespace,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type DuckBuilderNamespaceLister struct {
@@ -48,38 +42,13 @@ type DuckBuilderNamespaceLister struct {
 }
 
 func (bl *DuckBuilderNamespaceLister) Get(reference corev1.ObjectReference) (*DuckBuilder, error) {
-	switch reference.Kind {
-	case buildapi.BuilderKind:
-		builder, err := bl.DuckBuilderLister.BuilderLister.Builders(bl.namespace).Get(reference.Name)
-		return convertBuilder(builder), err
-	case buildapi.ClusterBuilderKind:
-		builder, err := bl.DuckBuilderLister.ClusterBuilderLister.Get(reference.Name)
-		return convertClusterBuilder(builder), err
-	default:
-		return nil, errors.Errorf("unknown builder type: %s", reference.Kind)
-	}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func convertBuilder(builder *buildapi.Builder) *DuckBuilder {
-	if builder == nil {
-		return nil
-	}
-
-	return &DuckBuilder{
-		TypeMeta:   builder.TypeMeta,
-		ObjectMeta: builder.ObjectMeta,
-		Status:     builder.Status,
-	}
-}
+func convertBuilder(builder *buildapi.Builder) *DuckBuilder { _ = "STUB: not implemented"; return nil }
 
 func convertClusterBuilder(builder *buildapi.ClusterBuilder) *DuckBuilder {
-	if builder == nil {
-		return nil
-	}
-
-	return &DuckBuilder{
-		TypeMeta:   builder.TypeMeta,
-		ObjectMeta: builder.ObjectMeta,
-		Status:     builder.Status,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -31,18 +31,6 @@ type fakeBuilds struct {
 }
 
 func newFakeBuilds(fake *FakeKpackV1alpha2, namespace string) buildv1alpha2.BuildInterface {
-	return &fakeBuilds{
-		gentype.NewFakeClientWithList[*v1alpha2.Build, *v1alpha2.BuildList](
-			fake.Fake,
-			namespace,
-			v1alpha2.SchemeGroupVersion.WithResource("builds"),
-			v1alpha2.SchemeGroupVersion.WithKind("Build"),
-			func() *v1alpha2.Build { return &v1alpha2.Build{} },
-			func() *v1alpha2.BuildList { return &v1alpha2.BuildList{} },
-			func(dst, src *v1alpha2.BuildList) { dst.ListMeta = src.ListMeta },
-			func(list *v1alpha2.BuildList) []*v1alpha2.Build { return gentype.ToPointerSlice(list.Items) },
-			func(list *v1alpha2.BuildList, items []*v1alpha2.Build) { list.Items = gentype.FromPointerSlice(items) },
-		),
-		fake,
-	}
+	_ = "STUB: not implemented"
+	return *new(buildv1alpha2.BuildInterface)
 }

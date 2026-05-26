@@ -2,7 +2,6 @@ package logs
 
 import (
 	"context"
-	"fmt"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -19,13 +18,11 @@ type watchOneBuild struct {
 }
 
 func (l *watchOneBuild) Watch(options v1.ListOptions) (watch.Interface, error) {
-	options.FieldSelector = fmt.Sprintf("metadata.name=%s", l.buildName)
-
-	return l.kpackClient.KpackV1alpha1().Builds(l.namespace).Watch(l.context, options)
+	_ = "STUB: not implemented"
+	return *new(watch.Interface), nil
 }
 
 func (l *watchOneBuild) List(options v1.ListOptions) (runtime.Object, error) {
-	options.FieldSelector = fmt.Sprintf("metadata.name=%s", l.buildName)
-
-	return l.kpackClient.KpackV1alpha1().Builds(l.namespace).List(l.context, options)
+	_ = "STUB: not implemented"
+	return *new(runtime.Object), nil
 }

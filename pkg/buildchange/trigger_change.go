@@ -1,32 +1,30 @@
 package buildchange
 
 import (
-	"fmt"
-
 	buildapi "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
 )
 
-func NewTriggerChange(dateStr string) Change {
-	format := "A new build was manually triggered on %s"
-	message := fmt.Sprintf(format, dateStr)
-
-	return triggerChange{
-		message: message,
-	}
-}
+func NewTriggerChange(dateStr string) Change { _ = "STUB: not implemented"; return *new(Change) }
 
 type triggerChange struct {
 	message string
 }
 
-func (t triggerChange) Reason() buildapi.BuildReason { return buildapi.BuildReasonTrigger }
-
-func (t triggerChange) IsBuildRequired() (bool, error) {
-	return t.message != "", nil
+func (t triggerChange) Reason() buildapi.BuildReason {
+	_ = "STUB: not implemented"
+	return *new(buildapi.BuildReason)
 }
 
-func (t triggerChange) Old() interface{} { return "" }
+func (t triggerChange) IsBuildRequired() (bool, error) {
+	_ = "STUB: not implemented"
+	return false, nil
+}
 
-func (t triggerChange) New() interface{} { return t.message }
+func (t triggerChange) Old() interface{} { _ = "STUB: not implemented"; return nil }
 
-func (t triggerChange) Priority() buildapi.BuildPriority { return buildapi.BuildPriorityHigh }
+func (t triggerChange) New() interface{} { _ = "STUB: not implemented"; return nil }
+
+func (t triggerChange) Priority() buildapi.BuildPriority {
+	_ = "STUB: not implemented"
+	return *new(buildapi.BuildPriority)
+}

@@ -93,17 +93,13 @@ type BuilderList struct {
 }
 
 func (*Builder) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind(BuilderKind)
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }
 
 func (c *Builder) NamespacedName() types.NamespacedName {
-	return types.NamespacedName{Namespace: c.Namespace, Name: c.Name}
+	_ = "STUB: not implemented"
+	return *new(types.NamespacedName)
 }
 
-func (b *NamespacedBuilderSpec) ServiceAccount() string {
-	if b.ServiceAccountName == "" && b.BackwardsCompatibleServiceAccount != "" {
-		return b.BackwardsCompatibleServiceAccount
-	}
-
-	return b.ServiceAccountName
-}
+func (b *NamespacedBuilderSpec) ServiceAccount() string { _ = "STUB: not implemented"; return "" }

@@ -29,48 +29,58 @@ type FakeKpackV1alpha2 struct {
 }
 
 func (c *FakeKpackV1alpha2) Builds(namespace string) v1alpha2.BuildInterface {
-	return newFakeBuilds(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.BuildInterface)
 }
 
 func (c *FakeKpackV1alpha2) Builders(namespace string) v1alpha2.BuilderInterface {
-	return newFakeBuilders(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.BuilderInterface)
 }
 
 func (c *FakeKpackV1alpha2) Buildpacks(namespace string) v1alpha2.BuildpackInterface {
-	return newFakeBuildpacks(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.BuildpackInterface)
 }
 
 func (c *FakeKpackV1alpha2) ClusterBuilders() v1alpha2.ClusterBuilderInterface {
-	return newFakeClusterBuilders(c)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.ClusterBuilderInterface)
 }
 
 func (c *FakeKpackV1alpha2) ClusterBuildpacks() v1alpha2.ClusterBuildpackInterface {
-	return newFakeClusterBuildpacks(c)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.ClusterBuildpackInterface)
 }
 
 func (c *FakeKpackV1alpha2) ClusterLifecycles() v1alpha2.ClusterLifecycleInterface {
-	return newFakeClusterLifecycles(c)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.ClusterLifecycleInterface)
 }
 
 func (c *FakeKpackV1alpha2) ClusterStacks() v1alpha2.ClusterStackInterface {
-	return newFakeClusterStacks(c)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.ClusterStackInterface)
 }
 
 func (c *FakeKpackV1alpha2) ClusterStores() v1alpha2.ClusterStoreInterface {
-	return newFakeClusterStores(c)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.ClusterStoreInterface)
 }
 
 func (c *FakeKpackV1alpha2) Images(namespace string) v1alpha2.ImageInterface {
-	return newFakeImages(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.ImageInterface)
 }
 
 func (c *FakeKpackV1alpha2) SourceResolvers(namespace string) v1alpha2.SourceResolverInterface {
-	return newFakeSourceResolvers(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(v1alpha2.SourceResolverInterface)
 }
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
 func (c *FakeKpackV1alpha2) RESTClient() rest.Interface {
-	var ret *rest.RESTClient
-	return ret
+	_ = "STUB: not implemented"
+	return *new(rest.Interface)
 }

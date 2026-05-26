@@ -41,155 +41,64 @@ type FakeResolver struct {
 }
 
 func (fake *FakeResolver) CanResolve(arg1 *v1alpha2.SourceResolver) bool {
-	fake.canResolveMutex.Lock()
-	ret, specificReturn := fake.canResolveReturnsOnCall[len(fake.canResolveArgsForCall)]
-	fake.canResolveArgsForCall = append(fake.canResolveArgsForCall, struct {
-		arg1 *v1alpha2.SourceResolver
-	}{arg1})
-	stub := fake.CanResolveStub
-	fakeReturns := fake.canResolveReturns
-	fake.recordInvocation("CanResolve", []interface{}{arg1})
-	fake.canResolveMutex.Unlock()
-	if stub != nil {
-		return stub(arg1)
-	}
-	if specificReturn {
-		return ret.result1
-	}
-	return fakeReturns.result1
+	_ = "STUB: not implemented"
+	return false
 }
 
-func (fake *FakeResolver) CanResolveCallCount() int {
-	fake.canResolveMutex.RLock()
-	defer fake.canResolveMutex.RUnlock()
-	return len(fake.canResolveArgsForCall)
-}
+func (fake *FakeResolver) CanResolveCallCount() int { _ = "STUB: not implemented"; return 0 }
 
 func (fake *FakeResolver) CanResolveCalls(stub func(*v1alpha2.SourceResolver) bool) {
-	fake.canResolveMutex.Lock()
-	defer fake.canResolveMutex.Unlock()
-	fake.CanResolveStub = stub
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeResolver) CanResolveArgsForCall(i int) *v1alpha2.SourceResolver {
-	fake.canResolveMutex.RLock()
-	defer fake.canResolveMutex.RUnlock()
-	argsForCall := fake.canResolveArgsForCall[i]
-	return argsForCall.arg1
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (fake *FakeResolver) CanResolveReturns(result1 bool) {
-	fake.canResolveMutex.Lock()
-	defer fake.canResolveMutex.Unlock()
-	fake.CanResolveStub = nil
-	fake.canResolveReturns = struct {
-		result1 bool
-	}{result1}
-}
+func (fake *FakeResolver) CanResolveReturns(result1 bool) { _ = "STUB: not implemented"; return }
 
 func (fake *FakeResolver) CanResolveReturnsOnCall(i int, result1 bool) {
-	fake.canResolveMutex.Lock()
-	defer fake.canResolveMutex.Unlock()
-	fake.CanResolveStub = nil
-	if fake.canResolveReturnsOnCall == nil {
-		fake.canResolveReturnsOnCall = make(map[int]struct {
-			result1 bool
-		})
-	}
-	fake.canResolveReturnsOnCall[i] = struct {
-		result1 bool
-	}{result1}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeResolver) Resolve(arg1 context.Context, arg2 *v1alpha2.SourceResolver) (v1alpha1.ResolvedSourceConfig, error) {
-	fake.resolveMutex.Lock()
-	ret, specificReturn := fake.resolveReturnsOnCall[len(fake.resolveArgsForCall)]
-	fake.resolveArgsForCall = append(fake.resolveArgsForCall, struct {
-		arg1 context.Context
-		arg2 *v1alpha2.SourceResolver
-	}{arg1, arg2})
-	stub := fake.ResolveStub
-	fakeReturns := fake.resolveReturns
-	fake.recordInvocation("Resolve", []interface{}{arg1, arg2})
-	fake.resolveMutex.Unlock()
-	if stub != nil {
-		return stub(arg1, arg2)
-	}
-	if specificReturn {
-		return ret.result1, ret.result2
-	}
-	return fakeReturns.result1, fakeReturns.result2
+	_ = "STUB: not implemented"
+	return *new(v1alpha1.ResolvedSourceConfig), nil
 }
 
-func (fake *FakeResolver) ResolveCallCount() int {
-	fake.resolveMutex.RLock()
-	defer fake.resolveMutex.RUnlock()
-	return len(fake.resolveArgsForCall)
-}
+func (fake *FakeResolver) ResolveCallCount() int { _ = "STUB: not implemented"; return 0 }
 
 func (fake *FakeResolver) ResolveCalls(stub func(context.Context, *v1alpha2.SourceResolver) (v1alpha1.ResolvedSourceConfig, error)) {
-	fake.resolveMutex.Lock()
-	defer fake.resolveMutex.Unlock()
-	fake.ResolveStub = stub
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeResolver) ResolveArgsForCall(i int) (context.Context, *v1alpha2.SourceResolver) {
-	fake.resolveMutex.RLock()
-	defer fake.resolveMutex.RUnlock()
-	argsForCall := fake.resolveArgsForCall[i]
-	return argsForCall.arg1, argsForCall.arg2
+	_ = "STUB: not implemented"
+	return *new(context.Context), nil
 }
 
 func (fake *FakeResolver) ResolveReturns(result1 v1alpha1.ResolvedSourceConfig, result2 error) {
-	fake.resolveMutex.Lock()
-	defer fake.resolveMutex.Unlock()
-	fake.ResolveStub = nil
-	fake.resolveReturns = struct {
-		result1 v1alpha1.ResolvedSourceConfig
-		result2 error
-	}{result1, result2}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeResolver) ResolveReturnsOnCall(i int, result1 v1alpha1.ResolvedSourceConfig, result2 error) {
-	fake.resolveMutex.Lock()
-	defer fake.resolveMutex.Unlock()
-	fake.ResolveStub = nil
-	if fake.resolveReturnsOnCall == nil {
-		fake.resolveReturnsOnCall = make(map[int]struct {
-			result1 v1alpha1.ResolvedSourceConfig
-			result2 error
-		})
-	}
-	fake.resolveReturnsOnCall[i] = struct {
-		result1 v1alpha1.ResolvedSourceConfig
-		result2 error
-	}{result1, result2}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (fake *FakeResolver) Invocations() map[string][][]interface{} {
-	fake.invocationsMutex.RLock()
-	defer fake.invocationsMutex.RUnlock()
-	fake.canResolveMutex.RLock()
-	defer fake.canResolveMutex.RUnlock()
-	fake.resolveMutex.RLock()
-	defer fake.resolveMutex.RUnlock()
-	copiedInvocations := map[string][][]interface{}{}
-	for key, value := range fake.invocations {
-		copiedInvocations[key] = value
-	}
-	return copiedInvocations
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (fake *FakeResolver) recordInvocation(key string, args []interface{}) {
-	fake.invocationsMutex.Lock()
-	defer fake.invocationsMutex.Unlock()
-	if fake.invocations == nil {
-		fake.invocations = map[string][][]interface{}{}
-	}
-	if fake.invocations[key] == nil {
-		fake.invocations[key] = [][]interface{}{}
-	}
-	fake.invocations[key] = append(fake.invocations[key], args)
+	_ = "STUB: not implemented"
+	return
 }
 
 var _ sourceresolver.Resolver = new(FakeResolver)

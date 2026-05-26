@@ -31,22 +31,6 @@ type fakeSourceResolvers struct {
 }
 
 func newFakeSourceResolvers(fake *FakeKpackV1alpha2, namespace string) buildv1alpha2.SourceResolverInterface {
-	return &fakeSourceResolvers{
-		gentype.NewFakeClientWithList[*v1alpha2.SourceResolver, *v1alpha2.SourceResolverList](
-			fake.Fake,
-			namespace,
-			v1alpha2.SchemeGroupVersion.WithResource("sourceresolvers"),
-			v1alpha2.SchemeGroupVersion.WithKind("SourceResolver"),
-			func() *v1alpha2.SourceResolver { return &v1alpha2.SourceResolver{} },
-			func() *v1alpha2.SourceResolverList { return &v1alpha2.SourceResolverList{} },
-			func(dst, src *v1alpha2.SourceResolverList) { dst.ListMeta = src.ListMeta },
-			func(list *v1alpha2.SourceResolverList) []*v1alpha2.SourceResolver {
-				return gentype.ToPointerSlice(list.Items)
-			},
-			func(list *v1alpha2.SourceResolverList, items []*v1alpha2.SourceResolver) {
-				list.Items = gentype.FromPointerSlice(items)
-			},
-		),
-		fake,
-	}
+	_ = "STUB: not implemented"
+	return *new(buildv1alpha2.SourceResolverInterface)
 }

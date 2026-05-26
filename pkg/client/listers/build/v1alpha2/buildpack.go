@@ -43,12 +43,14 @@ type buildpackLister struct {
 
 // NewBuildpackLister returns a new BuildpackLister.
 func NewBuildpackLister(indexer cache.Indexer) BuildpackLister {
-	return &buildpackLister{listers.New[*buildv1alpha2.Buildpack](indexer, buildv1alpha2.Resource("buildpack"))}
+	_ = "STUB: not implemented"
+	return *new(BuildpackLister)
 }
 
 // Buildpacks returns an object that can list and get Buildpacks.
 func (s *buildpackLister) Buildpacks(namespace string) BuildpackNamespaceLister {
-	return buildpackNamespaceLister{listers.NewNamespaced[*buildv1alpha2.Buildpack](s.ResourceIndexer, namespace)}
+	_ = "STUB: not implemented"
+	return *new(BuildpackNamespaceLister)
 }
 
 // BuildpackNamespaceLister helps list and get Buildpacks.

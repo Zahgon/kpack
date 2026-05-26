@@ -2,7 +2,6 @@ package buildchange
 
 import (
 	buildapi "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
-	"github.com/pkg/errors"
 )
 
 type ChangeSummary struct {
@@ -13,23 +12,8 @@ type ChangeSummary struct {
 }
 
 func NewChangeSummary(hasChanges bool, reasonsStr, changesStr string, priority buildapi.BuildPriority) (ChangeSummary, error) {
-	cs := ChangeSummary{
-		HasChanges: hasChanges,
-		ReasonsStr: reasonsStr,
-		ChangesStr: changesStr,
-		Priority:   priority,
-	}
-
-	if !cs.IsValid() {
-		return cs, errors.Errorf("invalid change summary '%+v'", cs)
-	}
-	return cs, nil
+	_ = "STUB: not implemented"
+	return *new(ChangeSummary), nil
 }
 
-func (c ChangeSummary) IsValid() bool {
-	if c.HasChanges {
-		return c.ReasonsStr != "" && c.ChangesStr != ""
-	} else {
-		return c.ReasonsStr == "" && c.ChangesStr == ""
-	}
-}
+func (c ChangeSummary) IsValid() bool { _ = "STUB: not implemented"; return false }

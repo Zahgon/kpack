@@ -1,7 +1,5 @@
 package v1alpha1
 
-import "fmt"
-
 // +k8s:openapi-gen=true
 // +k8s:deepcopy-gen=true
 type ImageSource struct {
@@ -48,9 +46,7 @@ type BuildpackInfo struct {
 	Version string `json:"version,omitempty"`
 }
 
-func (b BuildpackInfo) String() string {
-	return fmt.Sprintf("%s@%s", b.Id, b.Version)
-}
+func (b BuildpackInfo) String() string { _ = "STUB: not implemented"; return "" }
 
 // +k8s:openapi-gen=true
 // +k8s:deepcopy-gen=true

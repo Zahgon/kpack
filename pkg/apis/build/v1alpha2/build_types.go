@@ -80,20 +80,11 @@ type BuildSpec struct {
 	CreationTime      string              `json:"creationTime,omitempty"`
 }
 
-func (bs *BuildSpec) RegistryCacheTag() string {
-	if bs.Cache == nil || bs.Cache.Registry == nil {
-		return ""
-	}
-	return bs.Cache.Registry.Tag
-}
+func (bs *BuildSpec) RegistryCacheTag() string { _ = "STUB: not implemented"; return "" }
 
-func (bs *BuildSpec) NeedVolumeCache() bool {
-	return bs.Cache != nil && bs.Cache.Volume != nil && bs.Cache.Volume.ClaimName != ""
-}
+func (bs *BuildSpec) NeedVolumeCache() bool { _ = "STUB: not implemented"; return false }
 
-func (bs *BuildSpec) NeedRegistryCache() bool {
-	return bs.Cache != nil && bs.Cache.Registry != nil && bs.Cache.Registry.Tag != ""
-}
+func (bs *BuildSpec) NeedRegistryCache() bool { _ = "STUB: not implemented"; return false }
 
 // +k8s:openapi-gen=true
 type BuildCacheConfig struct {

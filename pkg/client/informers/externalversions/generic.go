@@ -19,10 +19,6 @@
 package externalversions
 
 import (
-	fmt "fmt"
-
-	v1alpha1 "github.com/pivotal/kpack/pkg/apis/build/v1alpha1"
-	v1alpha2 "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
@@ -41,57 +37,24 @@ type genericInformer struct {
 
 // Informer returns the SharedIndexInformer.
 func (f *genericInformer) Informer() cache.SharedIndexInformer {
-	return f.informer
+	_ = "STUB: not implemented"
+
+	// Lister returns the GenericLister.
+	return *new(cache.SharedIndexInformer)
 }
 
-// Lister returns the GenericLister.
 func (f *genericInformer) Lister() cache.GenericLister {
-	return cache.NewGenericLister(f.Informer().GetIndexer(), f.resource)
+	_ = "STUB: not implemented"
+	return *new(cache.GenericLister)
 }
 
 // ForResource gives generic access to a shared informer of the matching type
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
-	switch resource {
+	_ = "STUB: not implemented"
+
 	// Group=kpack.io, Version=v1alpha1
-	case v1alpha1.SchemeGroupVersion.WithResource("builds"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha1().Builds().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("builders"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha1().Builders().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("clusterbuilders"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha1().ClusterBuilders().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("clusterstacks"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha1().ClusterStacks().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("clusterstores"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha1().ClusterStores().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("images"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha1().Images().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("sourceresolvers"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha1().SourceResolvers().Informer()}, nil
-
-		// Group=kpack.io, Version=v1alpha2
-	case v1alpha2.SchemeGroupVersion.WithResource("builds"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().Builds().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("builders"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().Builders().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("buildpacks"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().Buildpacks().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("clusterbuilders"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().ClusterBuilders().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("clusterbuildpacks"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().ClusterBuildpacks().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("clusterlifecycles"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().ClusterLifecycles().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("clusterstacks"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().ClusterStacks().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("clusterstores"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().ClusterStores().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("images"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().Images().Informer()}, nil
-	case v1alpha2.SchemeGroupVersion.WithResource("sourceresolvers"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Kpack().V1alpha2().SourceResolvers().Informer()}, nil
-
-	}
-
-	return nil, fmt.Errorf("no informer found for %v", resource)
+	return *new(GenericInformer), nil
 }
+
+// Group=kpack.io, Version=v1alpha2

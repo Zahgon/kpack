@@ -43,9 +43,11 @@ type ClusterBuilderList struct {
 }
 
 func (*ClusterBuilder) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind(ClusterBuilderKind)
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }
 
 func (c *ClusterBuilder) NamespacedName() types.NamespacedName {
-	return types.NamespacedName{Namespace: c.Namespace, Name: c.Name}
+	_ = "STUB: not implemented"
+	return *new(types.NamespacedName)
 }

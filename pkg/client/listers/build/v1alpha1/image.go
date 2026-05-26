@@ -43,12 +43,14 @@ type imageLister struct {
 
 // NewImageLister returns a new ImageLister.
 func NewImageLister(indexer cache.Indexer) ImageLister {
-	return &imageLister{listers.New[*buildv1alpha1.Image](indexer, buildv1alpha1.Resource("image"))}
+	_ = "STUB: not implemented"
+	return *new(ImageLister)
 }
 
 // Images returns an object that can list and get Images.
 func (s *imageLister) Images(namespace string) ImageNamespaceLister {
-	return imageNamespaceLister{listers.NewNamespaced[*buildv1alpha1.Image](s.ResourceIndexer, namespace)}
+	_ = "STUB: not implemented"
+	return *new(ImageNamespaceLister)
 }
 
 // ImageNamespaceLister helps list and get Images.

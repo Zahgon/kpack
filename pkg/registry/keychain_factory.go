@@ -13,16 +13,9 @@ type SecretRef struct {
 	ImagePullSecrets []v1.LocalObjectReference
 }
 
-func (s SecretRef) IsNamespaced() bool {
-	return s.Namespace != ""
-}
+func (s SecretRef) IsNamespaced() bool { _ = "STUB: not implemented"; return false }
 
-func (s SecretRef) ServiceAccountOrDefault() string {
-	if s.ServiceAccount == "" {
-		return "default"
-	}
-	return s.ServiceAccount
-}
+func (s SecretRef) ServiceAccountOrDefault() string { _ = "STUB: not implemented"; return "" }
 
 type KeychainFactory interface {
 	KeychainForSecretRef(context.Context, SecretRef) (authn.Keychain, error)

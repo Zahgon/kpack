@@ -22,7 +22,6 @@ import (
 	context "context"
 
 	buildv1alpha2 "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
-	scheme "github.com/pivotal/kpack/pkg/client/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -57,14 +56,6 @@ type sourceResolvers struct {
 
 // newSourceResolvers returns a SourceResolvers
 func newSourceResolvers(c *KpackV1alpha2Client, namespace string) *sourceResolvers {
-	return &sourceResolvers{
-		gentype.NewClientWithList[*buildv1alpha2.SourceResolver, *buildv1alpha2.SourceResolverList](
-			"sourceresolvers",
-			c.RESTClient(),
-			scheme.ParameterCodec,
-			namespace,
-			func() *buildv1alpha2.SourceResolver { return &buildv1alpha2.SourceResolver{} },
-			func() *buildv1alpha2.SourceResolverList { return &buildv1alpha2.SourceResolverList{} },
-		),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

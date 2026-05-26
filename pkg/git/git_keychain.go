@@ -2,16 +2,8 @@ package git
 
 import (
 	"net/url"
-	"os"
-	"sort"
-	"strings"
 
-	giturls "github.com/chainguard-dev/git-urls"
 	"github.com/go-git/go-git/v5/plumbing/transport"
-	"github.com/go-git/go-git/v5/plumbing/transport/http"
-	gitssh "github.com/go-git/go-git/v5/plumbing/transport/ssh"
-	"github.com/pkg/errors"
-	"golang.org/x/crypto/ssh"
 
 	"github.com/pivotal/kpack/pkg/secret"
 )
@@ -38,44 +30,15 @@ type gitSshAuthCred struct {
 }
 
 func (g gitSshAuthCred) auth() (transport.AuthMethod, error) {
-	sshSecret, err := g.fetchSecret()
-	if err != nil {
-		return nil, err
-	}
-
-	keys, err := gitssh.NewPublicKeys("git", []byte(sshSecret.PrivateKey), "")
-	if err != nil {
-		return nil, err
-	}
-
-	if g.sshTrustUnknownHosts {
-		keys.HostKeyCallback = ssh.InsecureIgnoreHostKey()
-	} else if sshSecret.KnownHosts != "" {
-		hostsFile, err := os.CreateTemp("", "")
-		if err != nil {
-			return nil, err
-		}
-		defer os.Remove(hostsFile.Name())
-
-		// the file is loaded when this callback is generated, so it's fine to remove the file right after
-		hostsFile.WriteString(sshSecret.KnownHosts)
-		knownHosts, err := gitssh.NewKnownHostsCallback(hostsFile.Name())
-		if err != nil {
-			return nil, err
-		}
-		keys.HostKeyCallback = knownHosts
-	}
-
-	return keys, nil
+	_ = "STUB: not implemented"
+	return *new(transport.AuthMethod), nil
 }
 
-func (g gitSshAuthCred) match(url *url.URL) bool {
-	return url.Scheme == "ssh" && gitUrlMatch(url.Host, g.Domain)
-}
+// the file is loaded when this callback is generated, so it's fine to remove the file right after
 
-func (g gitSshAuthCred) name() string {
-	return g.SecretName
-}
+func (g gitSshAuthCred) match(url *url.URL) bool { _ = "STUB: not implemented"; return false }
+
+func (g gitSshAuthCred) name() string { _ = "STUB: not implemented"; return "" }
 
 type gitBasicAuthCred struct {
 	fetchSecret func() (secret.BasicAuth, error)
@@ -84,76 +47,20 @@ type gitBasicAuthCred struct {
 }
 
 func (c gitBasicAuthCred) auth() (transport.AuthMethod, error) {
-	basicAuthSecret, err := c.fetchSecret()
-	if err != nil {
-		return nil, err
-	}
-
-	return &http.BasicAuth{
-		Username: basicAuthSecret.Username,
-		Password: basicAuthSecret.Password,
-	}, nil
+	_ = "STUB: not implemented"
+	return *new(transport.AuthMethod), nil
 }
 
-func (c gitBasicAuthCred) match(url *url.URL) bool {
-	return (url.Scheme == "http" || url.Scheme == "https") && gitUrlMatch(url.Host, c.Domain)
-}
+func (c gitBasicAuthCred) match(url *url.URL) bool { _ = "STUB: not implemented"; return false }
 
-func (c gitBasicAuthCred) name() string {
-	return c.SecretName
-}
+func (c gitBasicAuthCred) name() string { _ = "STUB: not implemented"; return "" }
 
 func NewMountedSecretGitKeychain(volumeName string, basicAuthSecrets, sshAuthSecrets []string, sshTrustUnknownHosts bool) (*secretGitKeychain, error) {
-	var creds []gitCredential
-
-	for _, s := range basicAuthSecrets {
-		splitSecret := strings.Split(s, "=")
-		if len(splitSecret) != 2 {
-			return nil, errors.Errorf("could not parse git secret argument %s", s)
-		}
-
-		creds = append(creds, gitBasicAuthCred{
-			Domain:     splitSecret[1],
-			SecretName: splitSecret[0],
-			fetchSecret: func() (secret.BasicAuth, error) {
-				return secret.ReadBasicAuthSecret(volumeName, splitSecret[0])
-			},
-		})
-	}
-	for _, s := range sshAuthSecrets {
-		splitSecret := strings.Split(s, "=")
-		if len(splitSecret) != 2 {
-			return nil, errors.Errorf("could not parse git secret argument %s", s)
-		}
-
-		creds = append(creds, gitSshAuthCred{
-			Domain:     splitSecret[1],
-			SecretName: splitSecret[0],
-			fetchSecret: func() (secret.SSH, error) {
-				return secret.ReadSshSecret(volumeName, splitSecret[0])
-			},
-			sshTrustUnknownHosts: sshTrustUnknownHosts,
-		})
-	}
-
-	return &secretGitKeychain{
-		creds: creds,
-	}, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (k *secretGitKeychain) Resolve(rawUrl string) (transport.AuthMethod, error) {
-	parsedUrl, err := giturls.Parse(rawUrl)
-	if err != nil {
-		return nil, err
-	}
-
-	sort.Slice(k.creds, func(i, j int) bool { return k.creds[i].name() < k.creds[j].name() })
-
-	for _, cred := range k.creds {
-		if cred.match(parsedUrl) {
-			return cred.auth()
-		}
-	}
-
-	return anonymousAuth, nil
+	_ = "STUB: not implemented"
+	return *new(transport.AuthMethod), nil
 }

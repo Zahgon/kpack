@@ -31,22 +31,6 @@ type fakeClusterLifecycles struct {
 }
 
 func newFakeClusterLifecycles(fake *FakeKpackV1alpha2) buildv1alpha2.ClusterLifecycleInterface {
-	return &fakeClusterLifecycles{
-		gentype.NewFakeClientWithList[*v1alpha2.ClusterLifecycle, *v1alpha2.ClusterLifecycleList](
-			fake.Fake,
-			"",
-			v1alpha2.SchemeGroupVersion.WithResource("clusterlifecycles"),
-			v1alpha2.SchemeGroupVersion.WithKind("ClusterLifecycle"),
-			func() *v1alpha2.ClusterLifecycle { return &v1alpha2.ClusterLifecycle{} },
-			func() *v1alpha2.ClusterLifecycleList { return &v1alpha2.ClusterLifecycleList{} },
-			func(dst, src *v1alpha2.ClusterLifecycleList) { dst.ListMeta = src.ListMeta },
-			func(list *v1alpha2.ClusterLifecycleList) []*v1alpha2.ClusterLifecycle {
-				return gentype.ToPointerSlice(list.Items)
-			},
-			func(list *v1alpha2.ClusterLifecycleList, items []*v1alpha2.ClusterLifecycle) {
-				list.Items = gentype.FromPointerSlice(items)
-			},
-		),
-		fake,
-	}
+	_ = "STUB: not implemented"
+	return *new(buildv1alpha2.ClusterLifecycleInterface)
 }

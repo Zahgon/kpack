@@ -3,7 +3,6 @@ package v1alpha1
 import (
 	"context"
 
-	"github.com/pkg/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"knative.dev/pkg/apis"
@@ -52,13 +51,16 @@ type ClusterStoreList struct {
 }
 
 func (*ClusterStore) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind(ClusterStoreKind)
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }
 
 func (s *ClusterStore) ConvertTo(_ context.Context, _ apis.Convertible) error {
-	return errors.New("called convertTo in non-hub apiVersion v1alpha1")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ClusterStore) ConvertFrom(_ context.Context, _ apis.Convertible) error {
-	return errors.New("called convertFrom in non-hub apiVersion v1alpha1")
+	_ = "STUB: not implemented"
+	return nil
 }

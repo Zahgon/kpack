@@ -16,6 +16,4 @@ var PriorityClasses = map[BuildPriority]string{
 	BuildPriorityHigh: BuildPriorityClassHigh,
 }
 
-func (p BuildPriority) PriorityClass() string {
-	return PriorityClasses[p]
-}
+func (p BuildPriority) PriorityClass() string { _ = "STUB: not implemented"; return "" }

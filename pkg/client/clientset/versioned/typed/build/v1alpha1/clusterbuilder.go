@@ -22,7 +22,6 @@ import (
 	context "context"
 
 	buildv1alpha1 "github.com/pivotal/kpack/pkg/apis/build/v1alpha1"
-	scheme "github.com/pivotal/kpack/pkg/client/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -57,14 +56,6 @@ type clusterBuilders struct {
 
 // newClusterBuilders returns a ClusterBuilders
 func newClusterBuilders(c *KpackV1alpha1Client) *clusterBuilders {
-	return &clusterBuilders{
-		gentype.NewClientWithList[*buildv1alpha1.ClusterBuilder, *buildv1alpha1.ClusterBuilderList](
-			"clusterbuilders",
-			c.RESTClient(),
-			scheme.ParameterCodec,
-			"",
-			func() *buildv1alpha1.ClusterBuilder { return &buildv1alpha1.ClusterBuilder{} },
-			func() *buildv1alpha1.ClusterBuilderList { return &buildv1alpha1.ClusterBuilderList{} },
-		),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

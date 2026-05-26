@@ -53,5 +53,6 @@ type ClusterBuildpackList struct {
 }
 
 func (*ClusterBuildpack) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind(ClusterBuildpackKind)
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }

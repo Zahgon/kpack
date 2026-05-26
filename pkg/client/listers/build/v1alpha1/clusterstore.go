@@ -44,5 +44,6 @@ type clusterStoreLister struct {
 
 // NewClusterStoreLister returns a new ClusterStoreLister.
 func NewClusterStoreLister(indexer cache.Indexer) ClusterStoreLister {
-	return &clusterStoreLister{listers.New[*buildv1alpha1.ClusterStore](indexer, buildv1alpha1.Resource("clusterstore"))}
+	_ = "STUB: not implemented"
+	return *new(ClusterStoreLister)
 }

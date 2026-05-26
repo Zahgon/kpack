@@ -17,23 +17,16 @@ type Resolver struct {
 }
 
 func NewResolver(k8sClient k8sclient.Interface, sshTrustUnknownHosts bool, featureFlags config.FeatureFlags) *Resolver {
-	return &Resolver{
-		remoteGitResolver: remoteGitResolver{
-			featureFlags: featureFlags,
-		},
-		gitKeychain: newK8sGitKeychain(k8sClient, sshTrustUnknownHosts),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (r *Resolver) Resolve(ctx context.Context, sourceResolver *buildapi.SourceResolver) (corev1alpha1.ResolvedSourceConfig, error) {
-	auth, err := r.gitKeychain.Resolve(ctx, sourceResolver.Namespace, sourceResolver.Spec.ServiceAccountName, *sourceResolver.Spec.Source.Git)
-	if err != nil {
-		return corev1alpha1.ResolvedSourceConfig{}, err
-	}
-
-	return r.remoteGitResolver.Resolve(auth, sourceResolver.Spec.Source)
+	_ = "STUB: not implemented"
+	return *new(corev1alpha1.ResolvedSourceConfig), nil
 }
 
 func (*Resolver) CanResolve(sourceResolver *buildapi.SourceResolver) bool {
-	return sourceResolver.IsGit()
+	_ = "STUB: not implemented"
+	return false
 }

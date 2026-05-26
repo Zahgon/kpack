@@ -7,21 +7,16 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"strconv"
-	"strings"
 
 	"github.com/google/go-containerregistry/pkg/authn"
 	"github.com/google/go-containerregistry/pkg/authn/k8schain"
 	"github.com/pkg/errors"
 
 	_ "github.com/pivotal/kpack/internal/logrus/fatal"
-	"github.com/pivotal/kpack/pkg/blob"
 	"github.com/pivotal/kpack/pkg/buildchange"
 	"github.com/pivotal/kpack/pkg/cnb"
 	"github.com/pivotal/kpack/pkg/dockercreds"
 	"github.com/pivotal/kpack/pkg/flaghelpers"
-	"github.com/pivotal/kpack/pkg/git"
-	"github.com/pivotal/kpack/pkg/registry"
 )
 
 var (
@@ -172,94 +167,15 @@ func main() {
 }
 
 func fetchSource(logger *log.Logger, keychain authn.Keychain) error {
-	switch {
-	case *gitURL != "":
-		logLoadingSecrets(logger, basicGitCredentials, sshGitCredentials)
-
-		gitKeychain, err := git.NewMountedSecretGitKeychain(buildSecretsDir, basicGitCredentials, sshGitCredentials, *sshTrustUnknownHosts)
-		if err != nil {
-			return err
-		}
-
-		var initializeSubmodules bool
-		if gitInitializeSubmodules != nil {
-			initializeSubmodules = *gitInitializeSubmodules
-		}
-
-		fetcher := git.Fetcher{
-			Logger:               logger,
-			Keychain:             gitKeychain,
-			InitializeSubmodules: initializeSubmodules,
-		}
-		return fetcher.Fetch(appDir, *gitURL, *gitRevision, projectMetadataDir)
-	case *blobURL != "":
-		var (
-			blobKeychain blob.Keychain
-			err          error
-		)
-		if *blobAuth {
-			if len(blobCredentials) == 0 {
-				logger.Println("Loading blob credentials from helpers")
-				blobKeychain = blob.DefaultKeychain
-			} else {
-				logger.Println("Loading blob credentials from service account secrets")
-				logLoadingSecrets(logger, blobCredentials)
-				blobKeychain, err = blob.NewMountedSecretBlobKeychain(buildSecretsDir, blobCredentials)
-				if err != nil {
-					return err
-				}
-			}
-		}
-
-		fetcher := blob.Fetcher{
-			Logger:   logger,
-			Keychain: blobKeychain,
-		}
-		return fetcher.Fetch(appDir, *blobURL, *stripComponents, projectMetadataDir)
-	case *registryImage != "":
-		registrySourcePullSecrets, err := dockercreds.ParseDockerConfigSecret(registrySourcePullSecretsDir)
-		if err != nil {
-			return err
-		}
-
-		fetcher := registry.Fetcher{
-			Logger:   logger,
-			Client:   &registry.Client{},
-			Keychain: authn.NewMultiKeychain(registrySourcePullSecrets, keychain),
-		}
-		return fetcher.Fetch(appDir, *registryImage, projectMetadataDir)
-	default:
-		return errors.New("no git url, blob url, or registry image provided")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func logLoadingSecrets(logger *log.Logger, secretsSlices ...[]string) {
-	for _, secretsSlice := range secretsSlices {
-		for _, secret := range secretsSlice {
-			splitSecret := strings.Split(secret, "=")
-			if len(splitSecret) == 2 {
-				secretName := splitSecret[0]
-				domain := splitSecret[1]
-				logger.Printf("Loading secrets for %q from secret %q", domain, secretName)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
-func getenvInt(key string, defaultValue int) int {
-	value := os.Getenv(key)
-	atoi, err := strconv.Atoi(value)
-	if err != nil {
-		return defaultValue
-	}
-	return atoi
-}
+func getenvInt(key string, defaultValue int) int { _ = "STUB: not implemented"; return 0 }
 
-func getenvBool(key string) bool {
-	value := os.Getenv(key)
-	b, err := strconv.ParseBool(value)
-	if err != nil {
-		return false
-	}
-	return b
-}
+func getenvBool(key string) bool { _ = "STUB: not implemented"; return false }

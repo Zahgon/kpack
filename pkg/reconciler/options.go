@@ -18,5 +18,6 @@ type Options struct {
 }
 
 func (o Options) TrackerResyncPeriod() time.Duration {
-	return o.ResyncPeriod * 3
+	_ = "STUB: not implemented"
+	return *new(time.Duration)
 }

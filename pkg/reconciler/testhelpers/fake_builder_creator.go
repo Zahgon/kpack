@@ -42,17 +42,6 @@ func (f *FakeBuilderCreator) CreateBuilder(
 	signingSecrets []*corev1.Secret,
 	resolvedBuilderTag string,
 ) (buildapi.BuilderRecord, error) {
-	f.CreateBuilderCalls = append(f.CreateBuilderCalls, CreateBuilderArgs{
-		Context:            ctx,
-		BuilderKeychain:    builderKeychain,
-		StackKeychain:      stackKeychain,
-		Fetcher:            fetcher,
-		ClusterStack:       clusterStack,
-		ClusterLifecycle:   clusterLifecycle,
-		BuilderSpec:        spec,
-		SigningSecrets:     signingSecrets,
-		ResolvedBuilderTag: resolvedBuilderTag,
-	})
-
-	return f.Record, f.CreateErr
+	_ = "STUB: not implemented"
+	return *new(buildapi.BuilderRecord), nil
 }

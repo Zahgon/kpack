@@ -22,7 +22,6 @@ import (
 	context "context"
 
 	buildv1alpha2 "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
-	scheme "github.com/pivotal/kpack/pkg/client/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -57,14 +56,6 @@ type builders struct {
 
 // newBuilders returns a Builders
 func newBuilders(c *KpackV1alpha2Client, namespace string) *builders {
-	return &builders{
-		gentype.NewClientWithList[*buildv1alpha2.Builder, *buildv1alpha2.BuilderList](
-			"builders",
-			c.RESTClient(),
-			scheme.ParameterCodec,
-			namespace,
-			func() *buildv1alpha2.Builder { return &buildv1alpha2.Builder{} },
-			func() *buildv1alpha2.BuilderList { return &buildv1alpha2.BuilderList{} },
-		),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

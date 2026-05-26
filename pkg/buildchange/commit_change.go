@@ -3,10 +3,8 @@ package buildchange
 import buildapi "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
 
 func NewCommitChange(oldRevision, newRevision string) Change {
-	return commitChange{
-		oldRevision: oldRevision,
-		newRevision: newRevision,
-	}
+	_ = "STUB: not implemented"
+	return *new(Change)
 }
 
 type commitChange struct {
@@ -14,12 +12,18 @@ type commitChange struct {
 	oldRevision string
 }
 
-func (c commitChange) Reason() buildapi.BuildReason { return buildapi.BuildReasonCommit }
+func (c commitChange) Reason() buildapi.BuildReason {
+	_ = "STUB: not implemented"
+	return *new(buildapi.BuildReason)
+}
 
-func (c commitChange) IsBuildRequired() (bool, error) { return c.oldRevision != c.newRevision, nil }
+func (c commitChange) IsBuildRequired() (bool, error) { _ = "STUB: not implemented"; return false, nil }
 
-func (c commitChange) Old() interface{} { return c.oldRevision }
+func (c commitChange) Old() interface{} { _ = "STUB: not implemented"; return nil }
 
-func (c commitChange) New() interface{} { return c.newRevision }
+func (c commitChange) New() interface{} { _ = "STUB: not implemented"; return nil }
 
-func (c commitChange) Priority() buildapi.BuildPriority { return buildapi.BuildPriorityHigh }
+func (c commitChange) Priority() buildapi.BuildPriority {
+	_ = "STUB: not implemented"
+	return *new(buildapi.BuildPriority)
+}

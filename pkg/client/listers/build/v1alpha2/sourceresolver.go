@@ -43,12 +43,14 @@ type sourceResolverLister struct {
 
 // NewSourceResolverLister returns a new SourceResolverLister.
 func NewSourceResolverLister(indexer cache.Indexer) SourceResolverLister {
-	return &sourceResolverLister{listers.New[*buildv1alpha2.SourceResolver](indexer, buildv1alpha2.Resource("sourceresolver"))}
+	_ = "STUB: not implemented"
+	return *new(SourceResolverLister)
 }
 
 // SourceResolvers returns an object that can list and get SourceResolvers.
 func (s *sourceResolverLister) SourceResolvers(namespace string) SourceResolverNamespaceLister {
-	return sourceResolverNamespaceLister{listers.NewNamespaced[*buildv1alpha2.SourceResolver](s.ResourceIndexer, namespace)}
+	_ = "STUB: not implemented"
+	return *new(SourceResolverNamespaceLister)
 }
 
 // SourceResolverNamespaceLister helps list and get SourceResolvers.

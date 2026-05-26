@@ -13,11 +13,8 @@ type RemoteBuildpackInfo struct {
 }
 
 func (i RemoteBuildpackInfo) Optional(optional bool) RemoteBuildpackRef {
-	return RemoteBuildpackRef{
-		DescriptiveBuildpackInfo: i.BuildpackInfo,
-		Optional:                 optional,
-		Layers:                   i.Layers,
-	}
+	_ = "STUB: not implemented"
+	return *new(RemoteBuildpackRef)
 }
 
 type RemoteBuildpackRef struct {
@@ -27,10 +24,8 @@ type RemoteBuildpackRef struct {
 }
 
 func (r RemoteBuildpackRef) buildpackRef() corev1alpha1.BuildpackRef {
-	return corev1alpha1.BuildpackRef{
-		BuildpackInfo: r.DescriptiveBuildpackInfo.BuildpackInfo,
-		Optional:      r.Optional,
-	}
+	_ = "STUB: not implemented"
+	return *new(corev1alpha1.BuildpackRef)
 }
 
 type buildpackLayer struct {

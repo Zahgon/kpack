@@ -19,14 +19,12 @@
 package versioned
 
 import (
-	fmt "fmt"
 	http "net/http"
 
 	kpackv1alpha1 "github.com/pivotal/kpack/pkg/client/clientset/versioned/typed/build/v1alpha1"
 	kpackv1alpha2 "github.com/pivotal/kpack/pkg/client/clientset/versioned/typed/build/v1alpha2"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
-	flowcontrol "k8s.io/client-go/util/flowcontrol"
 )
 
 type Interface interface {
@@ -44,20 +42,24 @@ type Clientset struct {
 
 // KpackV1alpha1 retrieves the KpackV1alpha1Client
 func (c *Clientset) KpackV1alpha1() kpackv1alpha1.KpackV1alpha1Interface {
-	return c.kpackV1alpha1
+	_ = "STUB: not implemented"
+	return *
+
+	// KpackV1alpha2 retrieves the KpackV1alpha2Client
+	new(kpackv1alpha1.KpackV1alpha1Interface)
 }
 
-// KpackV1alpha2 retrieves the KpackV1alpha2Client
 func (c *Clientset) KpackV1alpha2() kpackv1alpha2.KpackV1alpha2Interface {
-	return c.kpackV1alpha2
+	_ = "STUB: not implemented"
+	return *
+
+	// Discovery retrieves the DiscoveryClient
+	new(kpackv1alpha2.KpackV1alpha2Interface)
 }
 
-// Discovery retrieves the DiscoveryClient
 func (c *Clientset) Discovery() discovery.DiscoveryInterface {
-	if c == nil {
-		return nil
-	}
-	return c.DiscoveryClient
+	_ = "STUB: not implemented"
+	return *new(discovery.DiscoveryInterface)
 }
 
 // NewForConfig creates a new Clientset for the given config.
@@ -65,69 +67,22 @@ func (c *Clientset) Discovery() discovery.DiscoveryInterface {
 // NewForConfig will generate a rate-limiter in configShallowCopy.
 // NewForConfig is equivalent to NewForConfigAndClient(c, httpClient),
 // where httpClient was generated with rest.HTTPClientFor(c).
-func NewForConfig(c *rest.Config) (*Clientset, error) {
-	configShallowCopy := *c
+func NewForConfig(c *rest.Config) (*Clientset, error) { _ = "STUB: not implemented"; return nil, nil }
 
-	if configShallowCopy.UserAgent == "" {
-		configShallowCopy.UserAgent = rest.DefaultKubernetesUserAgent()
-	}
-
-	// share the transport between all clients
-	httpClient, err := rest.HTTPClientFor(&configShallowCopy)
-	if err != nil {
-		return nil, err
-	}
-
-	return NewForConfigAndClient(&configShallowCopy, httpClient)
-}
+// share the transport between all clients
 
 // NewForConfigAndClient creates a new Clientset for the given config and http client.
 // Note the http client provided takes precedence over the configured transport values.
 // If config's RateLimiter is not set and QPS and Burst are acceptable,
 // NewForConfigAndClient will generate a rate-limiter in configShallowCopy.
 func NewForConfigAndClient(c *rest.Config, httpClient *http.Client) (*Clientset, error) {
-	configShallowCopy := *c
-	if configShallowCopy.RateLimiter == nil && configShallowCopy.QPS > 0 {
-		if configShallowCopy.Burst <= 0 {
-			return nil, fmt.Errorf("burst is required to be greater than 0 when RateLimiter is not set and QPS is set to greater than 0")
-		}
-		configShallowCopy.RateLimiter = flowcontrol.NewTokenBucketRateLimiter(configShallowCopy.QPS, configShallowCopy.Burst)
-	}
-
-	var cs Clientset
-	var err error
-	cs.kpackV1alpha1, err = kpackv1alpha1.NewForConfigAndClient(&configShallowCopy, httpClient)
-	if err != nil {
-		return nil, err
-	}
-	cs.kpackV1alpha2, err = kpackv1alpha2.NewForConfigAndClient(&configShallowCopy, httpClient)
-	if err != nil {
-		return nil, err
-	}
-
-	cs.DiscoveryClient, err = discovery.NewDiscoveryClientForConfigAndClient(&configShallowCopy, httpClient)
-	if err != nil {
-		return nil, err
-	}
-	return &cs, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // NewForConfigOrDie creates a new Clientset for the given config and
 // panics if there is an error in the config.
-func NewForConfigOrDie(c *rest.Config) *Clientset {
-	cs, err := NewForConfig(c)
-	if err != nil {
-		panic(err)
-	}
-	return cs
-}
+func NewForConfigOrDie(c *rest.Config) *Clientset { _ = "STUB: not implemented"; return nil }
 
 // New creates a new Clientset for the given RESTClient.
-func New(c rest.Interface) *Clientset {
-	var cs Clientset
-	cs.kpackV1alpha1 = kpackv1alpha1.New(c)
-	cs.kpackV1alpha2 = kpackv1alpha2.New(c)
-
-	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
-	return &cs
-}
+func New(c rest.Interface) *Clientset { _ = "STUB: not implemented"; return nil }

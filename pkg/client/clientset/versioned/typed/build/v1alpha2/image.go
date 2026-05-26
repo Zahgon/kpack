@@ -22,7 +22,6 @@ import (
 	context "context"
 
 	buildv1alpha2 "github.com/pivotal/kpack/pkg/apis/build/v1alpha2"
-	scheme "github.com/pivotal/kpack/pkg/client/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -57,14 +56,6 @@ type images struct {
 
 // newImages returns a Images
 func newImages(c *KpackV1alpha2Client, namespace string) *images {
-	return &images{
-		gentype.NewClientWithList[*buildv1alpha2.Image, *buildv1alpha2.ImageList](
-			"images",
-			c.RESTClient(),
-			scheme.ParameterCodec,
-			namespace,
-			func() *buildv1alpha2.Image { return &buildv1alpha2.Image{} },
-			func() *buildv1alpha2.ImageList { return &buildv1alpha2.ImageList{} },
-		),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

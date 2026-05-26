@@ -1,8 +1,6 @@
 package reconciler
 
 import (
-	"fmt"
-
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/types"
 )
@@ -12,19 +10,9 @@ type Key struct {
 	NamespacedName types.NamespacedName
 }
 
-func (k Key) String() string {
-	return fmt.Sprintf("%s/%s", k.GroupKind, k.NamespacedName)
-}
+func (k Key) String() string { _ = "STUB: not implemented"; return "" }
 
-func (k Key) WithNamespace(namespace string) Key {
-	return Key{
-		GroupKind: k.GroupKind,
-		NamespacedName: types.NamespacedName{
-			Namespace: namespace,
-			Name:      k.NamespacedName.Name,
-		},
-	}
-}
+func (k Key) WithNamespace(namespace string) Key { _ = "STUB: not implemented"; return *new(Key) }
 
 type Object interface {
 	GetName() string
@@ -32,15 +20,7 @@ type Object interface {
 	GetObjectKind() schema.ObjectKind
 }
 
-func KeyForObject(obj Object) Key {
-	return Key{
-		NamespacedName: types.NamespacedName{
-			Name:      obj.GetName(),
-			Namespace: obj.GetNamespace(),
-		},
-		GroupKind: obj.GetObjectKind().GroupVersionKind().GroupKind(),
-	}
-}
+func KeyForObject(obj Object) Key { _ = "STUB: not implemented"; return *new(Key) }
 
 type Tracker interface {
 	Track(ref Key, obj types.NamespacedName)

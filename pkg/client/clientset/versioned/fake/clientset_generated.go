@@ -21,12 +21,8 @@ package fake
 import (
 	clientset "github.com/pivotal/kpack/pkg/client/clientset/versioned"
 	kpackv1alpha1 "github.com/pivotal/kpack/pkg/client/clientset/versioned/typed/build/v1alpha1"
-	fakekpackv1alpha1 "github.com/pivotal/kpack/pkg/client/clientset/versioned/typed/build/v1alpha1/fake"
 	kpackv1alpha2 "github.com/pivotal/kpack/pkg/client/clientset/versioned/typed/build/v1alpha2"
-	fakekpackv1alpha2 "github.com/pivotal/kpack/pkg/client/clientset/versioned/typed/build/v1alpha2/fake"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
 	fakediscovery "k8s.io/client-go/discovery/fake"
 	"k8s.io/client-go/testing"
@@ -41,31 +37,8 @@ import (
 // server side apply testing. NewClientset is only available when apply configurations are generated (e.g.
 // via --with-applyconfig).
 func NewSimpleClientset(objects ...runtime.Object) *Clientset {
-	o := testing.NewObjectTracker(scheme, codecs.UniversalDecoder())
-	for _, obj := range objects {
-		if err := o.Add(obj); err != nil {
-			panic(err)
-		}
-	}
-
-	cs := &Clientset{tracker: o}
-	cs.discovery = &fakediscovery.FakeDiscovery{Fake: &cs.Fake}
-	cs.AddReactor("*", "*", testing.ObjectReaction(o))
-	cs.AddWatchReactor("*", func(action testing.Action) (handled bool, ret watch.Interface, err error) {
-		var opts metav1.ListOptions
-		if watchActcion, ok := action.(testing.WatchActionImpl); ok {
-			opts = watchActcion.ListOptions
-		}
-		gvr := action.GetResource()
-		ns := action.GetNamespace()
-		watch, err := o.Watch(gvr, ns, opts)
-		if err != nil {
-			return false, nil, err
-		}
-		return true, watch, nil
-	})
-
-	return cs
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Clientset implements clientset.Interface. Meant to be embedded into a
@@ -78,11 +51,13 @@ type Clientset struct {
 }
 
 func (c *Clientset) Discovery() discovery.DiscoveryInterface {
-	return c.discovery
+	_ = "STUB: not implemented"
+	return *new(discovery.DiscoveryInterface)
 }
 
 func (c *Clientset) Tracker() testing.ObjectTracker {
-	return c.tracker
+	_ = "STUB: not implemented"
+	return *new(testing.ObjectTracker)
 }
 
 var (
@@ -92,10 +67,12 @@ var (
 
 // KpackV1alpha1 retrieves the KpackV1alpha1Client
 func (c *Clientset) KpackV1alpha1() kpackv1alpha1.KpackV1alpha1Interface {
-	return &fakekpackv1alpha1.FakeKpackV1alpha1{Fake: &c.Fake}
+	_ = "STUB: not implemented"
+	return *new(kpackv1alpha1.KpackV1alpha1Interface)
 }
 
 // KpackV1alpha2 retrieves the KpackV1alpha2Client
 func (c *Clientset) KpackV1alpha2() kpackv1alpha2.KpackV1alpha2Interface {
-	return &fakekpackv1alpha2.FakeKpackV1alpha2{Fake: &c.Fake}
+	_ = "STUB: not implemented"
+	return *new(kpackv1alpha2.KpackV1alpha2Interface)
 }

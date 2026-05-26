@@ -1,16 +1,13 @@
 package imagehelpers
 
 import (
-	"fmt"
 	"io"
 	"sync"
 
 	"github.com/google/go-containerregistry/pkg/authn"
 	"github.com/google/go-containerregistry/pkg/name"
 	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
 	"github.com/google/go-containerregistry/pkg/v1/types"
-	"github.com/pkg/errors"
 )
 
 type LazyMountableLayerArgs struct {
@@ -20,26 +17,8 @@ type LazyMountableLayerArgs struct {
 }
 
 func NewLazyMountableLayer(args LazyMountableLayerArgs) (v1.Layer, error) {
-	reference, err := name.ParseReference(args.Image)
-	if err != nil {
-		return nil, errors.Wrapf(err, "unable to parse %s", args.Image)
-	}
-
-	fullyQualifiedLayer, err := name.NewDigest(fmt.Sprintf("%s@%s", reference.Context().Name(), args.Digest))
-	if err != nil {
-		return nil, errors.Wrapf(err, "unable to construct layer digest: %s", args.Digest)
-	}
-
-	return &remote.MountableLayer{
-		Layer: &lazyMountableLayer{
-			keychain:            args.Keychain,
-			fullyQualifiedLayer: fullyQualifiedLayer,
-			digest:              args.Digest,
-			diffId:              args.DiffId,
-			size:                args.Size,
-		},
-		Reference: reference,
-	}, nil
+	_ = "STUB: not implemented"
+	return *new(v1.Layer), nil
 }
 
 type lazyMountableLayer struct {
@@ -53,41 +32,30 @@ type lazyMountableLayer struct {
 }
 
 func (m *lazyMountableLayer) Digest() (v1.Hash, error) {
-	return v1.NewHash(m.digest)
+	_ = "STUB: not implemented"
+	return *new(v1.Hash), nil
 }
 
 func (m *lazyMountableLayer) DiffID() (v1.Hash, error) {
-	return v1.NewHash(m.diffId)
+	_ = "STUB: not implemented"
+	return *new(v1.Hash), nil
 }
 
-func (m *lazyMountableLayer) Size() (int64, error) {
-	return m.size, nil
-}
+func (m *lazyMountableLayer) Size() (int64, error) { _ = "STUB: not implemented"; return 0, nil }
 
 func (m lazyMountableLayer) MediaType() (types.MediaType, error) {
-	return types.DockerLayer, nil
+	_ = "STUB: not implemented"
+	return *new(types.MediaType), nil
 }
 
 func (m *lazyMountableLayer) Compressed() (io.ReadCloser, error) {
-	err := m.fetchRemoteLayer()
-	if err != nil {
-		return nil, err
-	}
-	return m.layer.Compressed()
+	_ = "STUB: not implemented"
+	return *new(io.ReadCloser), nil
 }
 
 func (m *lazyMountableLayer) Uncompressed() (io.ReadCloser, error) {
-	err := m.fetchRemoteLayer()
-	if err != nil {
-		return nil, err
-	}
-	return m.layer.Uncompressed()
+	_ = "STUB: not implemented"
+	return *new(io.ReadCloser), nil
 }
 
-func (m *lazyMountableLayer) fetchRemoteLayer() error {
-	var err error
-	m.Do(func() {
-		m.layer, err = remote.Layer(m.fullyQualifiedLayer, remote.WithAuthFromKeychain(m.keychain))
-	})
-	return errors.Wrapf(err, "unable to construct remote layer")
-}
+func (m *lazyMountableLayer) fetchRemoteLayer() error { _ = "STUB: not implemented"; return nil }

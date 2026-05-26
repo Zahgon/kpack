@@ -72,13 +72,13 @@ type ImageBuild struct {
 	Env       []corev1.EnvVar             `json:"env,omitempty"`
 	Resources corev1.ResourceRequirements `json:"resources,omitempty"`
 	// +listType
-	Tolerations          []corev1.Toleration `json:"tolerations,omitempty"`
-	NodeSelector         map[string]string   `json:"nodeSelector,omitempty"`
-	Affinity             *corev1.Affinity    `json:"affinity,omitempty"`
-	RuntimeClassName     *string             `json:"runtimeClassName,omitempty"`
-	SchedulerName        string              `json:"schedulerName,omitempty"`
-	BuildTimeout         *int64              `json:"buildTimeout,omitempty"`
-	CreationTime         string              `json:"creationTime,omitempty"`
+	Tolerations      []corev1.Toleration `json:"tolerations,omitempty"`
+	NodeSelector     map[string]string   `json:"nodeSelector,omitempty"`
+	Affinity         *corev1.Affinity    `json:"affinity,omitempty"`
+	RuntimeClassName *string             `json:"runtimeClassName,omitempty"`
+	SchedulerName    string              `json:"schedulerName,omitempty"`
+	BuildTimeout     *int64              `json:"buildTimeout,omitempty"`
+	CreationTime     string              `json:"creationTime,omitempty"`
 }
 
 // +k8s:openapi-gen=true
@@ -128,11 +128,13 @@ type ImageList struct {
 }
 
 func (*Image) GetGroupVersionKind() schema.GroupVersionKind {
-	return SchemeGroupVersion.WithKind("Image")
+	_ = "STUB: not implemented"
+	return *new(schema.GroupVersionKind)
 }
 
 func (i *Image) NamespacedName() types.NamespacedName {
-	return types.NamespacedName{Namespace: i.Namespace, Name: i.Name}
+	_ = "STUB: not implemented"
+	return *new(types.NamespacedName)
 }
 
 const ConditionBuilderReady corev1alpha1.ConditionType = "BuilderReady"

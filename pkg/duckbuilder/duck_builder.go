@@ -16,56 +16,32 @@ type DuckBuilder struct {
 	Status buildapi.BuilderStatus `json:"status"`
 }
 
-func (b *DuckBuilder) GetName() string {
-	return b.Name
-}
+func (b *DuckBuilder) GetName() string { _ = "STUB: not implemented"; return "" }
 
-func (b *DuckBuilder) GetNamespace() string {
-	return b.Namespace
-}
+func (b *DuckBuilder) GetNamespace() string { _ = "STUB: not implemented"; return "" }
 
-func (b *DuckBuilder) GetKind() string {
-	return b.Kind
-}
+func (b *DuckBuilder) GetKind() string { _ = "STUB: not implemented"; return "" }
 
 type DuckBuilderSpec struct {
 	ImagePullSecrets []v1.LocalObjectReference
 }
 
-func (b *DuckBuilder) Ready() bool {
-	return b.Status.GetCondition(corev1alpha1.ConditionReady).IsTrue() &&
-		(b.Generation == b.Status.ObservedGeneration)
-}
+func (b *DuckBuilder) Ready() bool { _ = "STUB: not implemented"; return false }
 
-func (b *DuckBuilder) UpToDate() bool {
-	return b.Status.GetCondition(buildapi.ConditionUpToDate).IsTrue() &&
-		(b.Generation == b.Status.ObservedGeneration)
-}
+func (b *DuckBuilder) UpToDate() bool { _ = "STUB: not implemented"; return false }
 
 func (b *DuckBuilder) BuildBuilderSpec() corev1alpha1.BuildBuilderSpec {
-	return corev1alpha1.BuildBuilderSpec{
-		Image:            b.Status.LatestImage,
-		ImagePullSecrets: b.Spec.ImagePullSecrets,
-	}
+	_ = "STUB: not implemented"
+	return *new(corev1alpha1.BuildBuilderSpec)
 }
 
 func (b *DuckBuilder) BuildpackMetadata() corev1alpha1.BuildpackMetadataList {
-	return b.Status.BuilderMetadata
+	_ = "STUB: not implemented"
+	return *new(corev1alpha1.BuildpackMetadataList)
 }
 
-func (b *DuckBuilder) RunImage() string {
-	return b.Status.Stack.RunImage
-}
+func (b *DuckBuilder) RunImage() string { _ = "STUB: not implemented"; return "" }
 
-func (b *DuckBuilder) LifecycleVersion() string {
-	return b.Status.Lifecycle.Version
-}
+func (b *DuckBuilder) LifecycleVersion() string { _ = "STUB: not implemented"; return "" }
 
-func (b *DuckBuilder) ConditionReadyMessage() string {
-	condition := b.Status.GetCondition(corev1alpha1.ConditionReady)
-	if condition == nil {
-		return ""
-	}
-
-	return condition.Message
-}
+func (b *DuckBuilder) ConditionReadyMessage() string { _ = "STUB: not implemented"; return "" }

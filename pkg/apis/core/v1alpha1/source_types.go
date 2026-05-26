@@ -1,8 +1,6 @@
 package v1alpha1
 
 import (
-	"strconv"
-
 	corev1 "k8s.io/api/core/v1"
 )
 
@@ -15,16 +13,7 @@ type SourceConfig struct {
 	SubPath  string    `json:"subPath,omitempty"`
 }
 
-func (sc *SourceConfig) Source() Source {
-	if sc.Git != nil {
-		return sc.Git
-	} else if sc.Blob != nil {
-		return sc.Blob
-	} else if sc.Registry != nil {
-		return sc.Registry
-	}
-	return nil
-}
+func (sc *SourceConfig) Source() Source { _ = "STUB: not implemented"; return *new(Source) }
 
 type Source interface {
 	BuildEnvVars() []corev1.EnvVar
@@ -39,30 +28,11 @@ type Git struct {
 	InitializeSubmodules bool   `json:"initializeSubmodules,omitempty"`
 }
 
-func (g *Git) BuildEnvVars() []corev1.EnvVar {
-	return []corev1.EnvVar{
-		{
-			Name:  "GIT_URL",
-			Value: g.URL,
-		},
-		{
-			Name:  "GIT_REVISION",
-			Value: g.Revision,
-		},
-		{
-			Name:  "GIT_INITIALIZE_SUBMODULES",
-			Value: strconv.FormatBool(g.InitializeSubmodules),
-		},
-	}
-}
+func (g *Git) BuildEnvVars() []corev1.EnvVar { _ = "STUB: not implemented"; return nil }
 
 func (in *Git) ImagePullSecretsVolume(name string) corev1.Volume {
-	return corev1.Volume{
-		Name: name,
-		VolumeSource: corev1.VolumeSource{
-			EmptyDir: &corev1.EmptyDirVolumeSource{},
-		},
-	}
+	_ = "STUB: not implemented"
+	return *new(corev1.Volume)
 }
 
 type BlobAuthKind string
@@ -82,30 +52,11 @@ type Blob struct {
 }
 
 func (b *Blob) ImagePullSecretsVolume(name string) corev1.Volume {
-	return corev1.Volume{
-		Name: name,
-		VolumeSource: corev1.VolumeSource{
-			EmptyDir: &corev1.EmptyDirVolumeSource{},
-		},
-	}
+	_ = "STUB: not implemented"
+	return *new(corev1.Volume)
 }
 
-func (b *Blob) BuildEnvVars() []corev1.EnvVar {
-	return []corev1.EnvVar{
-		{
-			Name:  "BLOB_URL",
-			Value: b.URL,
-		},
-		{
-			Name:  "BLOB_STRIP_COMPONENTS",
-			Value: strconv.FormatInt(b.StripComponents, 10),
-		},
-		{
-			Name:  "BLOB_AUTH",
-			Value: strconv.FormatBool(b.Auth != string(BlobAuthNone)),
-		},
-	}
-}
+func (b *Blob) BuildEnvVars() []corev1.EnvVar { _ = "STUB: not implemented"; return nil }
 
 // +k8s:openapi-gen=true
 // +k8s:deepcopy-gen=true
@@ -118,33 +69,11 @@ type Registry struct {
 }
 
 func (r *Registry) ImagePullSecretsVolume(name string) corev1.Volume {
-	if len(r.ImagePullSecrets) > 0 {
-		return corev1.Volume{
-			Name: name,
-			VolumeSource: corev1.VolumeSource{
-				Secret: &corev1.SecretVolumeSource{
-					SecretName: r.ImagePullSecrets[0].Name,
-				},
-			},
-		}
-	} else {
-		return corev1.Volume{
-			Name: name,
-			VolumeSource: corev1.VolumeSource{
-				EmptyDir: &corev1.EmptyDirVolumeSource{},
-			},
-		}
-	}
+	_ = "STUB: not implemented"
+	return *new(corev1.Volume)
 }
 
-func (r *Registry) BuildEnvVars() []corev1.EnvVar {
-	return []corev1.EnvVar{
-		{
-			Name:  "REGISTRY_IMAGE",
-			Value: r.Image,
-		},
-	}
-}
+func (r *Registry) BuildEnvVars() []corev1.EnvVar { _ = "STUB: not implemented"; return nil }
 
 // +k8s:openapi-gen=true
 // +k8s:deepcopy-gen=true
@@ -155,14 +84,8 @@ type ResolvedSourceConfig struct {
 }
 
 func (sc ResolvedSourceConfig) ResolvedSource() ResolvedSource {
-	if sc.Git != nil {
-		return sc.Git
-	} else if sc.Blob != nil {
-		return sc.Blob
-	} else if sc.Registry != nil {
-		return sc.Registry
-	}
-	return nil
+	_ = "STUB: not implemented"
+	return *new(ResolvedSource)
 }
 
 type ResolvedSource interface {
@@ -192,23 +115,13 @@ type ResolvedGitSource struct {
 }
 
 func (gs *ResolvedGitSource) SourceConfig() SourceConfig {
-	return SourceConfig{
-		Git: &Git{
-			URL:                  gs.URL,
-			Revision:             gs.Revision,
-			InitializeSubmodules: gs.InitializeSubmodules,
-		},
-		SubPath: gs.SubPath,
-	}
+	_ = "STUB: not implemented"
+	return *new(SourceConfig)
 }
 
-func (gs *ResolvedGitSource) IsUnknown() bool {
-	return gs.Type == Unknown
-}
+func (gs *ResolvedGitSource) IsUnknown() bool { _ = "STUB: not implemented"; return false }
 
-func (gs *ResolvedGitSource) IsPollable() bool {
-	return gs.Type != Commit && gs.Type != Unknown
-}
+func (gs *ResolvedGitSource) IsPollable() bool { _ = "STUB: not implemented"; return false }
 
 // +k8s:openapi-gen=true
 // +k8s:deepcopy-gen=true
@@ -220,26 +133,20 @@ type ResolvedBlobSource struct {
 }
 
 func (bs *ResolvedBlobSource) SourceConfig() SourceConfig {
-	return SourceConfig{
-		Blob: &Blob{
-			URL:             bs.URL,
-			Auth:            bs.Auth,
-			StripComponents: bs.StripComponents,
-		},
-		SubPath: bs.SubPath,
-	}
+	_ = "STUB: not implemented"
+	return *new(SourceConfig)
 }
 
-func (bs *ResolvedBlobSource) IsUnknown() bool {
-	return false
-}
+func (bs *ResolvedBlobSource) IsUnknown() bool { _ = "STUB: not implemented"; return false }
 
 func (bs *ResolvedBlobSource) IsPollable() bool {
+	_ = "STUB: not implemented"
+
+	// +k8s:openapi-gen=true
+	// +k8s:deepcopy-gen=true
 	return false
 }
 
-// +k8s:openapi-gen=true
-// +k8s:deepcopy-gen=true
 type ResolvedRegistrySource struct {
 	Image   string `json:"image"`
 	SubPath string `json:"subPath,omitempty"`
@@ -250,19 +157,10 @@ type ResolvedRegistrySource struct {
 }
 
 func (rs *ResolvedRegistrySource) SourceConfig() SourceConfig {
-	return SourceConfig{
-		Registry: &Registry{
-			Image:            rs.Image,
-			ImagePullSecrets: rs.ImagePullSecrets,
-		},
-		SubPath: rs.SubPath,
-	}
+	_ = "STUB: not implemented"
+	return *new(SourceConfig)
 }
 
-func (rs *ResolvedRegistrySource) IsUnknown() bool {
-	return false
-}
+func (rs *ResolvedRegistrySource) IsUnknown() bool { _ = "STUB: not implemented"; return false }
 
-func (rs *ResolvedRegistrySource) IsPollable() bool {
-	return false
-}
+func (rs *ResolvedRegistrySource) IsPollable() bool { _ = "STUB: not implemented"; return false }
